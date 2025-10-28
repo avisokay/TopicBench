@@ -1,6 +1,6 @@
 # TopicBench
 Benchmarking LLMs on the labeling of keyword clusters from topic modeling in computational social science.
 - Adam Visokay, Department of Sociology, University of Washington
-- Hilary Bayer, Center for Quantitative Science, University of Washington
+- Hilary Bayer, Center for Quantitative Sciences, University of Washington
 - Zilin Cheng, School of Pharmacy, University of Washington
 
