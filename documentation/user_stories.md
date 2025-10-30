@@ -8,3 +8,7 @@ As a computational social scientist, I want to use TopicBench to benchmark diffe
 
 ## User Story 3: Original Researchers
 As one of the original researchers involved in the development of TopicBench, I want to be able to automate the benchmarking process for various LLMs. This will enable me to efficiently compare model performances and publish findings that can guide future research in the field. I also want to make this software accessible to other researchers in computational social science or developers of LLMs, so they can benefit from our work.
+
+## User Story 4: Data Scientist
+Jordan is a Data Scientist who is testing different topic modeling algorithms. They want to leverage TopicBench to understand how different LLMs perform in labeling topics from different existing topic modeling algorithms. This will help them identify trade-offs between topic modeling methods and LLM labeling capabilities.
+
