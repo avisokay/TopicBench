@@ -12,3 +12,11 @@ As one of the original researchers involved in the development of TopicBench, I 
 ## User Story 4: Data Scientist
 Jordan is a Data Scientist who is testing different topic modeling algorithms. They want to leverage TopicBench to understand how different LLMs perform in labeling topics from different existing topic modeling algorithms. This will help them identify trade-offs between topic modeling methods and LLM labeling capabilities.
 
+## User Story 5: Maintainer
+Someone will need to update TopicBench as models and other dependecies change. This user wants to quickly identify dependencies and what code needs to be changed to update these. 
+
+## User Story 6: Contributor
+User wants to provide additional labels to use when assessing model perfomance, in additon to the built in gold standard and human labels. 
+
+## User Story 7: Nefarious User
+User is searching for API keys or other private data to steal from repository. 
