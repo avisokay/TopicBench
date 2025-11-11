@@ -9,7 +9,7 @@ The goal is to evaluate the semantic similarity between two strings. For example
 
 Cases to evaluate can be found in the `evaluation_cases.csv` file. They include:
 - "the cat sat on the mat" vs. "a feline rested atop a rug"
-- "he ran quickly to the store" vs. "she ran quickly to the store"
+- "he ran quickly to the store" vs. "he ran quickly to the store"
 - "domestic unrest" vs. "political instability in the country"
 - "turn left at the traffic light" vs. "photosynthesis occurs in plant cells"
 
