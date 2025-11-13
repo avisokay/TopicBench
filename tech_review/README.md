@@ -1,11 +1,12 @@
 # Evaluating the Semantic Similarity of Two Strings
 ## Technical Review of Third Party Options
 
-The goal is to evaluate the semantic similarity between two strings. For example, given the strings "The cat sat on the mat" and "A feline rested atop a rug", we want to determine how similar their meanings are, and represent that similarity as a score between 0 (completely unrelated/orthogonal) and 1 (exactly the same). There are several third-party libraries and tools that can be used to achieve this. We categorize some examples below by the approach they use. They are implemented in the python notebooks located in the `tech_review/notebooks/semantic_similarity/` directory: <br><br>
+The goal is to evaluate the semantic similarity between two strings. For example, given the strings "The cat sat on the mat" and "A feline rested atop a rug", we want to determine how similar their meanings are, and represent that similarity as a score between 0 (completely unrelated/orthogonal) and 1 (exactly the same). There are several third-party libraries and tools that can be used to achieve this. We categorize some examples below by the approach they use. They are implemented in the python notebooks located in the `tech_review/` directory: <br><br>
 `01-token_overlap.ipynb`<br>
 `02-sentence_embeddings_cosine.ipynb`<br>
 `03-sentence_embeddings_other.ipynb`<br>
-`04-llm_as_judge.ipynb`
+`04-llm_as_judge.ipynb`<br>
+`05-embedding_anchors.ipynb`<br>
 
 Cases to evaluate can be found in the `evaluation_cases.csv` file. They include:
 - "the cat sat on the mat" vs. "a feline rested atop a rug"
