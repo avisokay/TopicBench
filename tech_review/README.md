@@ -47,7 +47,7 @@ print(f"Jaccard Similarity: {jaccard:.4f}")
 ```
 
 2. Sentence Embeddings + Cosine Similarity<br>
-Use these for semantic similarity via vector space:
+Use these for semantic similarity via vector space -> [tutorial link](https://osanseviero.github.io/hackerllama/blog/posts/sentence_embeddings/).
 
 - `SentenceTransformers`: Most popular for generating sentence embeddings using models like `BERT`, `RoBERTa`, etc. Easily compute cosine similarity between embeddings.
 
