@@ -12,7 +12,7 @@ readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
     {name = "Adam Visokay", email = "avisokay@uw.edu"},
-    {name = "Hilary Bayer", email = "hilaryhbayer@uw.edu"},
+    {name = "Hilary Bayer", email = "hbayer@uw.edu"},
     {name = "Zilin Cheng", email = "zlcheng@uw.edu"},
     {name = "Aida Mustafanova", email = "aidam1@uw.edu"},
     {name = "James Stewart", email = "jstewa1@uw.edu"},
