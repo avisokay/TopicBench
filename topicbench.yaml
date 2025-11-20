@@ -1,0 +1,22 @@
+name: topicbench
+channels:
+  - conda-forge
+dependencies:
+  - python < 3.13
+  - pandas
+  - numpy
+  - pytorch
+  - jupyter
+  - tqdm
+  - scipy
+  - datasets
+  - pip
+  - sentence-transformers
+  - openai
+  - os
+  - jmcmurray::json
+  - tqdm
+  - scikit-learn
+  - nltk
+
+
