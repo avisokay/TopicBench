@@ -7,10 +7,21 @@ from src.semantic_similarity import calculate_metrics
 import pytest
 import numpy as np
 
-# Loading up CSV
-from pathlib import Path
-csv_path = Path(__file__).parent.parent / 'tech_review' / 'evaluation_cases.csv'
-df = pd.read_csv(csv_path)
+# hardcoded test data
+df = pd.DataFrame({
+    'sent1': [
+        'the cat sat on the mat',
+        'he ran quickly to the store',
+        'domestic unrest',
+        'turn left at the traffic light'
+    ],
+    'sent2': [
+        'a feline rested atop a rug',
+        'he ran quickly to the store',
+        'political instability in the country',
+        'photosynthesis occurs in plant cells'
+    ]
+})
 
 # Apply the function
 metrics_df = df.apply(calculate_metrics, axis=1)
