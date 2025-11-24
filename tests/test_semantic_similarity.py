@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 import pandas as pd
 from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
@@ -29,8 +33,6 @@ metrics_df = df.apply(calculate_metrics, axis=1)
 print(metrics_df.head())
 
 def test_semantic_similarity_metrics():
-    with pytest.raises(AssertionError):
-        # Assert that BLEU scores are above a certain threshold
-        assert np.testing.assert_allclose(metrics_df['BLEU'], [0, 1, 0, 0], atol=0.1)
-        assert np.testing.assert_allclose(metrics_df['Jaccard'], [0, 1, 0, 0], atol=0.1)
-        return
+    # Assert that scores are as expected
+    np.testing.assert_allclose(metrics_df['BLEU'], [0, 1, 0, 0], atol=0.1)
+    np.testing.assert_allclose(metrics_df['Jaccard'], [0, 1, 0, 0], atol=0.1)
