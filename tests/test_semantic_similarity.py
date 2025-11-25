@@ -7,7 +7,7 @@ from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import jaccard_score
-from src.semantic_similarity import calculate_metrics
+from src.semantic_similarity import calculate_overlap
 import pytest
 import numpy as np
 
@@ -28,9 +28,9 @@ df = pd.DataFrame({
 })
 
 # Apply the function
-metrics_df = df.apply(calculate_metrics, axis=1)
+metrics_df = df.apply(calculate_overlap, axis=1)
 
-print(metrics_df.head())
+print(pd.concat([df, metrics_df], axis=1))
 
 def test_semantic_similarity_metrics():
     # Assert that scores are as expected

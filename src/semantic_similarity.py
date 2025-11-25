@@ -5,7 +5,13 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import jaccard_score
 
 # Function to calculate the metrics for each row
-def calculate_metrics(row):
+def calculate_overlap(row):
+    '''
+    Calculate semantic similarity metrics between two sentences.
+    Input: row with 'sent1' and 'sent2' fields
+    Output: Series with BLEU and Jaccard scores rating token overlap between 0 and 1
+    '''
+
     sent1 = row['sent1']
     sent2 = row['sent2']
 
