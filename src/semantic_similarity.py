@@ -7,15 +7,15 @@ from sklearn.metrics import jaccard_score
 from sentence_transformers import SentenceTransformer
 
 # Function to calculate the metrics for each row
-def calculate_overlap(row):
+def calculate_overlap(row, string1, string2):
     '''
     Calculate semantic similarity metrics between two sentences.
-    Input: row with 'sent1' and 'sent2' fields
+    Input: row with 'string1' and 'string2' fields defined
     Output: Series with BLEU and Jaccard scores rating token overlap between 0 and 1
     '''
 
-    sent1 = row['sent1']
-    sent2 = row['sent2']
+    sent1 = row[string1]
+    sent2 = row[string2]
 
     # Tokenize both sentences to lowercase word tokens
     tokens1 = word_tokenize(sent1.lower())
@@ -31,15 +31,15 @@ def calculate_overlap(row):
 
     return pd.Series({'BLEU': bleu, 'Jaccard': jaccard})
 
-def calculate_embedding_cosine(row):
+def calculate_embedding_cosine(row, string1, string2):
     '''
     Calculate cosine similarity between sentence embeddings.
-    Input: row with 'sent1' and 'sent2' fields
+    Input: row with 'string1' and 'string2' fields defined
     Output: Series with Cosine Similarity score between 0 and 1
     '''
 
-    sent1 = row['sent1']
-    sent2 = row['sent2']
+    sent1 = row[string1]
+    sent2 = row[string2]
 
     # Load pre-trained sentence transformer model
     model = SentenceTransformer('all-MiniLM-L6-v2')

@@ -1,27 +1,21 @@
 import pandas as pd
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
 
-def calculate_embedding_cosine(row):
+def compute_alignment(df, human_col="human_similarity", ai_col="ai_similarity", tau=1):
     '''
-    Calculate cosine similarity between sentence embeddings.
-    Input: row with 'sent1' and 'sent2' fields
-    Output: Series with Cosine Similarity score between 0 and 1
+    Compute AI alignment based on comparing author vs human and author vs AI semantic similarity scores.
+
+    Input: DataFrame with 'human_similarity' and 'AI_similarity' columns.
+    Input: Tau threshold (optional, default=1). Number of standard deviations below mean AI score to set as threshold.
+    Output: DataFrame with 'tau' value and binary 'AI_alignment' columns added.
     '''
 
-    sent1 = row['sent1']
-    sent2 = row['sent2']
+    # calculate threshold tau
+    tau_value = df[ai_col].mean() - tau * df[human_col].std()
 
-    # Load pre-trained sentence transformer model
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    # add tau and alignment columns
+    df = df.copy()
+    df["tau"] = tau_value
+    df["AI_alignment"] = (df[ai_col] >= tau_value).astype(int)
 
-    # Generate embeddings for both sentences
-    embedding1 = model.encode([sent1])
-    embedding2 = model.encode([sent2])
-
-    # Calculate cosine similarity
-    cosine_sim = cosine_similarity(embedding1, embedding2)[0][0]
-
-    return pd.Series({'Cosine_Similarity': cosine_sim})
-
+    return df

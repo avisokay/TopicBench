@@ -28,8 +28,8 @@ df = pd.DataFrame({
 })
 
 # Apply the function
-metrics_df = df.apply(calculate_overlap, axis=1)
-cosine_df = df.apply(calculate_embedding_cosine, axis=1)
+metrics_df = df.apply(calculate_overlap, axis=1, string1='sent1', string2='sent2')
+cosine_df = df.apply(calculate_embedding_cosine, axis=1, string1='sent1', string2='sent2')
 
 print(pd.concat([df, metrics_df, cosine_df], axis=1))
 
