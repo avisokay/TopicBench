@@ -53,3 +53,6 @@ def calculate_embedding_cosine(row, string1, string2):
 
     return pd.Series({'Cosine_Similarity': cosine_sim})
 
+# def calculate_embedding_euclidean():
+
+
