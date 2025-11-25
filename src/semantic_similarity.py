@@ -2,7 +2,9 @@ import pandas as pd
 from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import jaccard_score
+from sentence_transformers import SentenceTransformer
 
 # Function to calculate the metrics for each row
 def calculate_overlap(row):
@@ -28,3 +30,26 @@ def calculate_overlap(row):
     jaccard = jaccard_score(X[0], X[1])
 
     return pd.Series({'BLEU': bleu, 'Jaccard': jaccard})
+
+def calculate_embedding_cosine(row):
+    '''
+    Calculate cosine similarity between sentence embeddings.
+    Input: row with 'sent1' and 'sent2' fields
+    Output: Series with Cosine Similarity score between 0 and 1
+    '''
+
+    sent1 = row['sent1']
+    sent2 = row['sent2']
+
+    # Load pre-trained sentence transformer model
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+
+    # Generate embeddings for both sentences
+    embedding1 = model.encode([sent1])
+    embedding2 = model.encode([sent2])
+
+    # Calculate cosine similarity
+    cosine_sim = cosine_similarity(embedding1, embedding2)[0][0]
+
+    return pd.Series({'Cosine_Similarity': cosine_sim})
+
