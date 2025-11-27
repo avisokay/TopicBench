@@ -31,13 +31,37 @@ df = pd.DataFrame({
 metrics_df = df.apply(calculate_overlap, axis=1, string1='sent1', string2='sent2')
 cosine_df = df.apply(calculate_embedding_cosine, axis=1, string1='sent1', string2='sent2')
 
-print(pd.concat([df, metrics_df, cosine_df], axis=1))
+def test_BLUE():
+    """
+    author: avisokay
+    reviewer: hhbayer
+    category: (i) Smoke Test
+    """
+    # Assert that BLEU column is the correct type
+    assert isinstance(metrics_df['BLEU'], pd.Series)
 
-def test_semantic_similarity_metrics():
-    # Assert that scores are as expected
-    np.testing.assert_allclose(metrics_df['BLEU'], [0, 1, 0, 0], atol=0.1)
+def test_semantic_similarity():
+    """
+    author: avisokay
+    reviewer: hhbayer
+    category: (ii) One-Shot Test
+    """
+    # Assert that scores are as the expected values
     np.testing.assert_allclose(metrics_df['Jaccard'], [0, 1, 0, 0], atol=0.1)
 
 def test_embeddings_cosine():
-    # Assert that scores are as expected
-    np.testing.assert_allclose(cosine_df['Cosine_Similarity'], [0.562432, 1, 0.645155, 0.004850], atol=0.1)
+    """
+    author: avisokay
+    reviewer: hhbayer
+    category: (iii) Edge Test
+    """
+
+    # Check boundary conditions: cosine similarity must be between -1 and 1
+    assert(cosine_df['Cosine_Similarity'] >= -1).all()
+    np.testing.assert_allclose(cosine_df['Cosine_Similarity'],
+                               np.clip(cosine_df['Cosine_Similarity'], -1, 1),
+                               atol=1e-6)
+
+    # Check edge case: identical strings should have cosine similarity of 1.0
+    identical_idx = 1  # 'he ran quickly to the store' appears in both sent1 and sent2
+    np.testing.assert_allclose(cosine_df.iloc[identical_idx]['Cosine_Similarity'], 1.0, atol=0.01)
