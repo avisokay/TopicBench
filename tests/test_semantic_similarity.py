@@ -7,8 +7,7 @@ from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import jaccard_score
-from src.validate import compute_alignment
-from src.semantic_similarity import (calculate_overlap, calculate_embedding_cosine,calculate_embedding_manhattan, calculate_embedding_euclidean, calculate_embedding_angular, alculate_llm_as_judge)
+from src.semantic_similarity import calculate_overlap, calculate_embedding_cosine,calculate_embedding_manhattan, calculate_embedding_euclidean, calculate_embedding_angular, calculate_llm_as_judge
 import pytest
 import numpy as np
 import os
@@ -187,6 +186,8 @@ def test_llm_as_judge_pattern_parses_response(monkeypatch):
 
     assert isinstance(result["LLM_Rationale"], str)
     assert "paraphrases" in result["LLM_Rationale"]
+   
+   
 
 
 def test_embedding_manhattan():
