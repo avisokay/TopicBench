@@ -79,3 +79,36 @@ print(results['AI_alignment'])
 def test_compute_alignment():
     # check that AI_alignment is computed correctly
     np.testing.assert_allclose(results['AI_alignment'], [0,1,1,0,1,1,0,1,1,1,0,1,1,1,1], atol=0.1)
+
+
+
+def test_compute_alignment_one_shot():
+    """
+    author: Zilin Cheng
+    category: one-shot test
+    """
+    # Small, hand-crafted example where we know the alignment labels
+    df = pd.DataFrame(
+        {
+            "human_similarity": [0.2, 0.8, 0.9],
+            "ai_similarity": [0.1, 0.7, 0.95],
+        }
+    )
+
+    result = compute_alignment(
+        df,
+        human_col="human_similarity",
+        ai_col="ai_similarity",
+        tau=1,
+    )
+
+    # Tau should be the same for every row and follow the spec:
+    # tau = mean(ai) - 1 * std(human)
+    expected_tau = df["ai_similarity"].mean() - df["human_similarity"].std()
+
+    # All tau values are identical – we just check the first
+    assert pytest.approx(result["tau"].iloc[0], rel=1e-6) == expected_tau
+    assert result["tau"].nunique() == 1
+
+    # For this example, we expect AI_alignment to be [0, 1, 1]
+    assert list(result["AI_alignment"]) == [0, 1, 1]
