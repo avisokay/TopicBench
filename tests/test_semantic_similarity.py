@@ -192,7 +192,7 @@ def test_llm_as_judge_pattern_parses_response(monkeypatch):
 def test_embedding_manhattan():
    """
     author: hhbayer
-    reviewer: avisokay
+    reviewer: zilin49
     category: (i) Smoke Test
     """
    manhattan_df = calculate_embedding_manhattan(df.iloc[0], 'sent1', 'sent2')
@@ -201,7 +201,7 @@ def test_embedding_manhattan():
 def test_embedding_euclidean():
    """
     author: hhbayer
-    reviewer: avisokay
+    reviewer: zilin49
     category: (ii) One-Shot Test
     """
    euclidean_df = df.apply(calculate_embedding_euclidean, axis=1, string1='sent1', string2='sent2')
@@ -210,7 +210,7 @@ def test_embedding_euclidean():
 def test_embeddings_angular():
    """
     author: hhbayer
-    reviewer: avisokay
+    reviewer: zilin49
     category: (iii) Edge Test
     """
    bad_input_df = pd.DataFrame({
@@ -228,14 +228,15 @@ def test_embeddings_angular():
 def test_distances_pattern():
    """
     author: hhbayer
-    reviewer: avisokay
+    reviewer: zilin49
     category: (iv) Pattern Test
     """
-   #test three distance methods on df 
+   # Calculate three distance measures on sample sentences in df
    euclidean_df = df.apply(calculate_embedding_euclidean, axis=1, string1='sent1', string2='sent2')
    manhattan_df = df.apply(calculate_embedding_manhattan, axis=1, string1='sent1', string2='sent2')
    angular_df = df.apply(calculate_embedding_angular, axis=1, string1='sent1', string2='sent2')
-   # Pattern: ranked distances should be consistent across methods
+
+   # Pattern: ranked distances should be consistent across distance measures
    euclidean_ranks = euclidean_df['Euclidean_Distance'].rank().tolist()
    manhattan_ranks = manhattan_df['Manhattan_Distance'].rank().tolist()
    angular_ranks = angular_df['Angular_Distance'].rank().tolist()
