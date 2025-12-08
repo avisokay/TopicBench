@@ -9,12 +9,12 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-from topicbench.semantic_similarity import calculate_embedding_cosine
-from topicbench.validate import compute_alignment
+from src.semantic_similarity import calculate_embedding_cosine
+from src.validate import compute_alignment
 import pytest
-from topicbench.semantic_similarity import calculate_embedding_cosine
+from src.semantic_similarity import calculate_embedding_cosine
 
-"""df = pd.read_csv("/Users/aidamustafanova/TopicBench/data/example.csv")
+"""df = pd.read_csv("/Users/aidamustafanova/src/data/example.csv")
 df.head()
 human_similarity = df.apply(calculate_embedding_cosine, axis=1, string1="author_label", string2="alt_human")
 

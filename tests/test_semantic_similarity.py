@@ -10,7 +10,7 @@ from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import jaccard_score
-from topicbench.semantic_similarity import calculate_overlap, calculate_embedding_cosine,calculate_embedding_manhattan, calculate_embedding_euclidean, calculate_embedding_angular, calculate_llm_as_judge
+from src.semantic_similarity import calculate_overlap, calculate_embedding_cosine,calculate_embedding_manhattan, calculate_embedding_euclidean, calculate_embedding_angular, calculate_llm_as_judge
 import pytest
 import numpy as np
 import os
