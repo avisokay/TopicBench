@@ -1,106 +1,120 @@
-import os
+"""
+Semantic similarity utilities for TopicBench.
+
+This module implements functions to compute lexical and semantic similarity
+between pairs of sentences, including BLEU and Jaccard overlap, embedding-based
+cosine/Euclidean/Manhattan/angular distances, and an optional LLM-as-a-judge
+similarity score.
+"""
+
+from math import acos, pi
 import json
+import os
+
 import pandas as pd
-import torch
 from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import jaccard_score
+from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 from openai import OpenAI
 from scipy.spatial import distance
-from math import acos, pi
 
-# Function to calculate the metrics for each row
+
 def calculate_overlap(row, string1, string2):
-    '''
-    Calculate semantic similarity metrics between two sentences.
-    Input: row with 'string1' and 'string2' fields defined
-    Output: Series with BLEU and Jaccard scores rating token overlap between 0 and 1
-    '''
-
-    sent1 = row[string1]
-    sent2 = row[string2]
-
-    # Tokenize both sentences to lowercase word tokens
-    tokens1 = word_tokenize(sent1.lower())
-    tokens2 = word_tokenize(sent2.lower())
-
-    # BLEU score - Measures how one sentence matches with the other
-    bleu = sentence_bleu([tokens2], tokens1)
-
-    # Jaccard Similarity - Compares sets of words in a sentence
-    vectorizer = CountVectorizer(binary=True)
-    X = vectorizer.fit_transform([sent1, sent2]).toarray()
-    jaccard = jaccard_score(X[0], X[1])
-
-    return pd.Series({'BLEU': bleu, 'Jaccard': jaccard})
-
-def calculate_embedding_cosine(row, string1, string2):
-    '''
-    Calculate cosine similarity between sentence embeddings.
-    Input: row with 'string1' and 'string2' fields defined
-    Output: Series with Cosine Similarity score between 0 and 1
-    '''
-
-    sent1 = row[string1]
-    sent2 = row[string2]
-
-    # Load pre-trained sentence transformer model
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-
-    # Generate embeddings for both sentences
-    embedding1 = model.encode([sent1])
-    embedding2 = model.encode([sent2])
-
-    # Calculate cosine similarity
-    cosine_sim = cosine_similarity(embedding1, embedding2)[0][0]
-
-    return pd.Series({'Cosine_Similarity': cosine_sim})
-
-# Helper: lazily create an OpenAI client
-_openai_client = None  # cached client so we only construct once
-
-def _get_openai_client() -> OpenAI:
     """
-    Return a cached OpenAI client.
-
-    Users are expected to set their own API key in the OPENAI_API_KEY
-    environment variable, e.g.:
-
-        export OPENAI_API_KEY="sk-..."
-
-    If you prefer a different key-management scheme, you can edit this
-    helper, but we keep the package code generic.
-    """
-    global _openai_client
-    if _openai_client is None:
-        api_key = os.environ.get("OPENAI_API_KEY")
-        if not api_key:
-            raise RuntimeError(
-                "OPENAI_API_KEY environment variable is not set. "
-                "Please export your own API key before using LLM-based similarity."
-            )
-        _openai_client = OpenAI(api_key=api_key)
-    return _openai_client
-
-# LLM-as-a-judge semantic similarity
-def calculate_llm_as_judge(row, string1, string2, model: str = "gpt-5"):
-    """
-    Use a Large Language Model (LLM) as a semantic similarity judge.
-
-    This prompts an LLM with two sentences and asks it for:
-    1) a similarity score between 0.0 and 1.0 and
-    2) a short natural-language rationale.
-
-    Users must provide *their own* OpenAI API key by setting the
-    OPENAI_API_KEY environment variable before calling this function.
+    Calculate BLEU and Jaccard overlap between two sentences.
 
     Parameters
     ----------
     row : pd.Series
-        Row with `string1` and `string2` fields defined.
+        Row with the text columns.
+    string1, string2 : str
+        Column names containing the two sentences.
+
+    Returns
+    -------
+    pd.Series
+        Series with:
+        - "BLEU"   : BLEU score in [0, 1]
+        - "Jaccard": Jaccard overlap in [0, 1]
+    """
+    sent1 = row[string1]
+    sent2 = row[string2]
+
+    tokens1 = word_tokenize(sent1.lower())
+    tokens2 = word_tokenize(sent2.lower())
+
+    bleu = sentence_bleu([tokens2], tokens1)
+
+    vectorizer = CountVectorizer(binary=True)
+    vectors = vectorizer.fit_transform([sent1, sent2]).toarray()
+    jaccard = jaccard_score(vectors[0], vectors[1])
+
+    return pd.Series({"BLEU": bleu, "Jaccard": jaccard})
+
+
+def calculate_embedding_cosine(row, string1, string2):
+    """
+    Calculate cosine similarity between sentence embeddings.
+
+    Parameters
+    ----------
+    row : pd.Series
+        Row with the text columns.
+    string1, string2 : str
+        Column names containing the two sentences.
+
+    Returns
+    -------
+    pd.Series
+        Series with "Cosine_Similarity" in [-1, 1].
+    """
+    sent1 = row[string1]
+    sent2 = row[string2]
+
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+
+    embedding1 = model.encode([sent1])
+    embedding2 = model.encode([sent2])
+
+    cosine_sim = cosine_similarity(embedding1, embedding2)[0][0]
+
+    return pd.Series({"Cosine_Similarity": cosine_sim})
+
+
+def _get_openai_client() -> OpenAI:
+    """
+    Construct an OpenAI client using the OPENAI_API_KEY environment variable.
+
+    Returns
+    -------
+    OpenAI
+        Configured OpenAI client instance.
+
+    Raises
+    ------
+    RuntimeError
+        If the OPENAI_API_KEY environment variable is not set.
+    """
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "OPENAI_API_KEY environment variable is not set. "
+            "Please export your API key before using LLM-based similarity."
+        )
+    return OpenAI(api_key=api_key)
+
+
+def calculate_llm_as_judge(row, string1, string2, model: str = "gpt-5"):
+    """
+    Use a Large Language Model (LLM) as a semantic similarity judge.
+
+    Parameters
+    ----------
+    row : pd.Series
+        Row with the text columns.
     string1, string2 : str
         Column names containing the two sentences.
     model : str, optional
@@ -157,87 +171,123 @@ Respond ONLY with a JSON object of the form:
         }
     )
 
-# def calculate_embedding_euclidean():
-def calculate_embedding_euclidean(row, string1, string2):
-    '''
-    Calculate euclidean distance between sentence embeddings.
-    Input: row with 'string1' and 'string2' fields defined
-    Output: Series with euclidean distance greater than or equal to 0
-    '''
 
+def calculate_embedding_euclidean(row, string1, string2):
+    """
+    Calculate Euclidean distance between sentence embeddings.
+
+    Parameters
+    ----------
+    row : pd.Series
+        Row with the text columns.
+    string1, string2 : str
+        Column names containing the two sentences.
+
+    Returns
+    -------
+    pd.Series
+        Series with "Euclidean_Distance" >= 0.
+
+    Raises
+    ------
+    ValueError
+        If either input string is empty.
+    """
     sent1 = row[string1]
     sent2 = row[string2]
 
     if len(sent1.strip()) == 0 or len(sent2.strip()) == 0:
         raise ValueError("Empty string input detected")
-    else:
-        pass
 
-    # Load pre-trained sentence transformer model
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    model = SentenceTransformer("all-MiniLM-L6-v2")
 
-       # Generate embeddings for both sentences
     embedding1 = model.encode([sent1], convert_to_tensor=True)
     embedding2 = model.encode([sent2], convert_to_tensor=True)
 
-    # Calculate euclidian distance 
-    euclidean_dist = distance.euclidean(embedding1.squeeze().cpu().numpy(), embedding2.squeeze().cpu().numpy())
+    euclidean_dist = distance.euclidean(
+        embedding1.squeeze().cpu().numpy(),
+        embedding2.squeeze().cpu().numpy(),
+    )
 
-    return pd.Series({'Euclidean_Distance': euclidean_dist})
+    return pd.Series({"Euclidean_Distance": euclidean_dist})
 
 
 def calculate_embedding_manhattan(row, string1, string2):
-    '''
-    Calculate manhattan distance between sentence embeddings.
-    Input: row with 'string1' and 'string2' fields defined
-    Output: Series with manhattan distance greater than or equal to 0
-    '''
+    """
+    Calculate Manhattan distance between sentence embeddings.
 
+    Parameters
+    ----------
+    row : pd.Series
+        Row with the text columns.
+    string1, string2 : str
+        Column names containing the two sentences.
+
+    Returns
+    -------
+    pd.Series
+        Series with "Manhattan_Distance" >= 0.
+
+    Raises
+    ------
+    ValueError
+        If either input string is empty.
+    """
     sent1 = row[string1]
     sent2 = row[string2]
-    
+
     if len(sent1.strip()) == 0 or len(sent2.strip()) == 0:
         raise ValueError("Empty string input detected")
-    else:
-        pass
 
-    # Load pre-trained sentence transformer model
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    model = SentenceTransformer("all-MiniLM-L6-v2")
 
-    # Generate embeddings for both sentences
     embedding1 = model.encode([sent1], convert_to_tensor=True)
     embedding2 = model.encode([sent2], convert_to_tensor=True)
 
-    # Calculate manhattan distance 
-    manhattan_dist = distance.cityblock(embedding1.squeeze().cpu().numpy(), embedding2.squeeze().cpu().numpy())
+    manhattan_dist = distance.cityblock(
+        embedding1.squeeze().cpu().numpy(),
+        embedding2.squeeze().cpu().numpy(),
+    )
 
-    return pd.Series({'Manhattan_Distance': manhattan_dist})
+    return pd.Series({"Manhattan_Distance": manhattan_dist})
+
 
 def calculate_embedding_angular(row, string1, string2):
-    '''
+    """
     Calculate angular distance between sentence embeddings.
-    Input: row with 'string1' and 'string2' fields defined
-    Output: Series with angular distance greater than or equal to 0
-    '''
 
+    Parameters
+    ----------
+    row : pd.Series
+        Row with the text columns.
+    string1, string2 : str
+        Column names containing the two sentences.
+
+    Returns
+    -------
+    pd.Series
+        Series with "Angular_Distance" >= 0.
+
+    Raises
+    ------
+    ValueError
+        If either input string is empty.
+    """
     sent1 = row[string1]
     sent2 = row[string2]
 
     if len(sent1.strip()) == 0 or len(sent2.strip()) == 0:
         raise ValueError("Empty string input detected")
-    else:
-        pass
 
-    # Load pre-trained sentence transformer model
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    model = SentenceTransformer("all-MiniLM-L6-v2")
 
-    # Generate embeddings for both sentences
     embedding1 = model.encode([sent1], convert_to_tensor=True)
     embedding2 = model.encode([sent2], convert_to_tensor=True)
 
-    # Calculate euclidian distance 
-    angular_dist = acos(1 - distance.cosine(embedding1.squeeze().cpu().numpy(), embedding2.squeeze().cpu().numpy()))/pi
+    cosine_dist = distance.cosine(
+        embedding1.squeeze().cpu().numpy(),
+        embedding2.squeeze().cpu().numpy(),
+    )
+    angular_dist = acos(1 - cosine_dist) / pi
 
-    return pd.Series({'Angular_Distance': angular_dist})
-
-
+    return pd.Series({"Angular_Distance": angular_dist})

@@ -1,3 +1,6 @@
+"""
+Tests for BLEU and Jaccard token-overlap metrics (James's tests).
+"""
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -15,6 +18,9 @@ csv_path = Path(__file__).parent.parent / 'tech_review' / 'evaluation_cases.csv'
 df = pd.read_csv(csv_path)
 
 def calculate_metrics(row):
+    """
+    Compute BLEU and Jaccard scores for a pair of sentences.
+    """
     sent1 = row['sent1']
     sent2 = row['sent2']
     tokens1 = word_tokenize(sent1.lower())

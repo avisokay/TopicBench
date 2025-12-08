@@ -1,3 +1,6 @@
+"""
+Tests for the compute_alignment function in src.validate.
+"""
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -6,10 +9,10 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-from src.semantic_similarity import calculate_embedding_cosine
-from src.validate import compute_alignment
+from topicbench.semantic_similarity import calculate_embedding_cosine
+from topicbench.validate import compute_alignment
 import pytest
-from src.semantic_similarity import calculate_embedding_cosine
+from topicbench.semantic_similarity import calculate_embedding_cosine
 
 """df = pd.read_csv("/Users/aidamustafanova/TopicBench/data/example.csv")
 df.head()
