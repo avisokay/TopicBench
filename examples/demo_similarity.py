@@ -9,7 +9,7 @@ passes it to the function.
 """
 
 import pandas as pd
-from topicbench.semantic_similarity import calculate_embedding_cosine
+from src.semantic_similarity import calculate_embedding_cosine # Fix: semantic_similarity was moved to src folder
 
 def run_demo():
     print("--- TopicBench Demo: Cosine Similarity ---\n")

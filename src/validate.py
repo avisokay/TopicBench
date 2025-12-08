@@ -1,3 +1,12 @@
+"""
+Alignment scoring utilities for TopicBench.
+
+This module provides functions to compute alignment between human
+and AI similarity judgments, including thresholding based on a tau
+value (standard deviation based cutoff).
+"""
+import pandas as pd
+
 from src.semantic_similarity import (
     calculate_overlap,
     calculate_embedding_cosine,
@@ -6,20 +15,13 @@ from src.semantic_similarity import (
     calculate_embedding_angular
 )
 
-"""
-Alignment scoring utilities for TopicBench.
-
-This module provides functions to compute alignment between human
-and AI similarity judgments, including thresholding based on a tau
-value (standard deviation based cutoff).
-"""
-
 def score_similarity(label1: str, label2: str, metric = "cosine"):
     '''
     Score the semantic similarity of two labels.
 
     Input: Two labels (strings).
-    Input: Similarity metric (default: Cosine). Options: "cosine", "euclidean", "manhattan", "angular", "bleu", "jaccard"
+    Input: Similarity metric (default: Cosine). 
+    Options: "cosine", "euclidean", "manhattan", "angular", "bleu", "jaccard"
     Output: Similarity score (float).
     '''
 
@@ -52,7 +54,11 @@ def score_similarity(label1: str, label2: str, metric = "cosine"):
         return float(result['Jaccard'])
 
     else:
-        raise ValueError(f"Unknown metric '{metric}'. Choose from: cosine, euclidean, manhattan, angular, bleu, jaccard")
+        raise ValueError(
+            "Unknown metric "
+            f"'{metric}'. Choose from: cosine, euclidean, manhattan, "
+            "angular, bleu, jaccard"
+        )
 
 
 def compute_alignment(df, human_col="human_similarity", ai_col="ai_similarity", tau=1):
