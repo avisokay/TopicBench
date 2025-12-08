@@ -13,10 +13,11 @@ dependencies:
   - pip
   - sentence-transformers
   - openai
-  - os
+  - jmcmurray::os
   - jmcmurray::json
   - tqdm
   - scikit-learn
   - nltk
   - pytest
+  - ollama
 

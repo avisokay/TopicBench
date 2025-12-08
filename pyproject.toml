@@ -24,7 +24,20 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = [
     "numpy>=3.21.0",
-    "pandas>=2.3.0"
+    "pandas>=2.3.0",
+    "pytorch>=1.13.0",
+    "jupyter>=1.0.0",
+    "tqdm>=4.64.0",
+    "scipy>=1.10.0",
+    "datasets>=2.10.0",
+    "pip>=23.0.0",
+    "sentence-transformers>=2.3.0",
+    "openai>=0.27.0",
+    "os>=0.1.4",
+    "jmcmurray-json>=0.1.7",
+    "scikit-learn>=1.2.0",
+    "nltk>=3.8.0",
+    "pytest>=7.2.0",
 ]
 
 [project.urls]
