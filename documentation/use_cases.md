@@ -1,305 +1,212 @@
 # Use Cases for TopicBench
 
-## UC1.1 – Benchmark newly developed LLMs against established models
+## UC1 – Evaluate a new LLM on topic labeling
+**Related User Story:** LLM Developer  
 
 **Actor:** LLM Developer  
-
-**Goal / Description:**  
-Benchmark newly developed LLMs against established models.
+**Goal:** Evaluate how a new LLM performs on labeling keyword clusters.  
 
 **Preconditions:**
-- Developer has access to a new LLM and baseline models.
-- Keyword clusters and reference labels are available.
-
-**Expected Input:**
-- Keyword clusters derived from topic modeling.
-- Predictions from the newly developed LLM.
-- Predictions or stored results from established models.
-
-**Expected Output:**
-- Comparative metrics (e.g., accuracy, precision, recall, F1) for new vs. established models.
-- Summary report of relative performance.
-
-**Main Flow:**
-1. User selects dataset and models (new + established).
-2. System runs labeling with each model.
-3. System computes evaluation metrics.
-4. System produces a comparison report.
-
-
----
-
-## UC1.2 – Evaluate model performance on keyword cluster labeling tasks
-
-**Actor:** LLM Developer  
-
-**Goal / Description:**  
-Evaluate model performance on keyword cluster labeling tasks.
-
-**Preconditions:**
-- Keyword clusters and gold/human labels exist.
+- TopicBench is installed and configured.
+- Keyword clusters and reference labels (gold/human) are available.
+- The new LLM is accessible (API or local).
 
 **Expected Input:**
 - Keyword clusters.
-- LLM-generated labels.
-- Gold or human labels.
+- LLM configuration (model name, endpoint, API key, parameters).
 
 **Expected Output:**
-- Evaluation metrics for the model on the labeling task.
+- Metrics (e.g., accuracy, F1, similarity scores) comparing the new LLM to reference labels.
 
 **Main Flow:**
-1. User loads clusters and reference labels.
-2. System calls the LLM to generate labels.
-3. System compares predictions to references.
-4. System stores and displays metrics.
+1. Developer loads a dataset of keyword clusters into TopicBench.
+2. Developer selects the new LLM to evaluate.
+3. TopicBench sends clusters to the LLM and collects predicted labels.
+4. TopicBench compares predicted labels to reference labels.
+5. TopicBench computes and displays evaluation metrics.
 
+**Exceptions:**
+- LLM API call fails or times out.
+- Dataset is missing or in the wrong format.
 
 ---
-## UC2.1 – Compare off-the-shelf LLMs without writing API integration code
+
+## UC2 – Benchmark off-the-shelf LLMs without API coding
+**Related User Story:** Computational Social Scientist  
 
 **Actor:** Computational Social Scientist  
-
-**Goal / Description:**  
-Compare off-the-shelf LLMs without writing API integration code.
+**Goal:** Compare several pre-configured LLMs on a dataset without writing API integration code.  
 
 **Preconditions:**
 - TopicBench has pre-configured integrations for major LLM providers.
+- User has a dataset of keyword clusters.
 
 **Expected Input:**
-- Dataset with keyword clusters.
-- List of pre-configured models to compare.
+- Choice of dataset.
+- Selection of built-in models to compare.
 
 **Expected Output:**
-- Ranking or table of model performance on the dataset.
+- Benchmark table showing performance of each model on the dataset.
 
 **Main Flow:**
-1. User selects dataset and built-in models.
-2. System runs benchmarks with default settings.
-3. System computes and displays comparison metrics.
+1. User opens TopicBench and selects a dataset.
+2. User chooses one or more pre-configured models (e.g., GPT-4, Claude).
+3. TopicBench runs labeling for each model.
+4. TopicBench computes performance metrics per model.
+5. TopicBench shows a comparison table or simple report.
 
+**Exceptions:**
+- Missing or invalid API keys.
+- One of the models is unavailable.
 
 ---
 
-## UC2.2 – Select optimal model for specific research datasets
-
-**Actor:** Computational Social Scientist  
-
-**Goal / Description:**  
-Select optimal model for specific research datasets.
-
-**Preconditions:**
-- Several candidate models are available in TopicBench.
-
-**Expected Input:**
-- Research dataset (topic modeling output).
-- List of candidate models.
-
-**Expected Output:**
-- Recommendation or clear comparison enabling model selection.
-
-**Main Flow:**
-1. User chooses dataset and candidate models.
-2. System benchmarks each model.
-3. User reviews results and picks the most suitable model.
-
----
-
-## UC3.1 – Automate benchmarking across multiple LLMs simultaneously
+## UC3 – Run a full benchmark and save results for research
+**Related User Story:** Original Researchers  
 
 **Actor:** Original Researcher  
+**Goal:** Automate benchmarking of multiple LLMs and store results for publication and future reuse.  
 
-**Goal / Description:**  
-Automate benchmarking across multiple LLMs simultaneously.
+**Preconditions:**
+- TopicBench is configured with multiple LLMs.
+- Datasets and label sets are available.
+- Environment is reproducible (requirements, Docker, etc.).
 
 **Expected Input:**
 - List of models to benchmark.
-- Dataset(s) and configuration (metrics, prompts).
+- Dataset(s) and benchmark configuration (metrics, prompt template, seeds).
 
 **Expected Output:**
-- Benchmark results for all models in one run.
+- Saved benchmark results (metrics, logs).
+- Files for figures and tables used in papers.
 
 **Main Flow:**
-1. User specifies models and benchmark configuration.
-2. System runs all models automatically.
-3. System saves combined results.
+1. Researcher selects dataset(s) and the set of LLMs.
+2. Researcher starts an automated benchmark run.
+3. TopicBench runs all models, logs outputs, and computes metrics.
+4. TopicBench saves results, configuration, and logs with a run ID.
+5. Researcher exports tables/plots for use in publications.
 
+**Exceptions:**
+- A model fails mid-benchmark.
+- Disk or permission issues when saving results.
 
 ---
 
-## UC3.2 – Generate publication-ready figures and tables
-
-**Actor:** Original Researcher  
-
-**Goal / Description:**  
-Generate publication-ready figures and tables.
-
-**Expected Input:**
-- Benchmark results stored in TopicBench.
-
-**Expected Output:**
-- Figures and tables suitable for papers (e.g., PDF/PNG/LaTeX/CSV).
-
-**Main Flow:**
-1. User selects results and desired formats.
-2. System generates formatted figures and tables.
-
-
----
-
-## UC4.1 – Compare LLM performance across different topic modeling algorithms
+## UC4 – Compare topic models + LLM labels
+**Related User Story:** Data Scientist  
 
 **Actor:** Data Scientist  
+**Goal:** Compare how different LLMs label topics produced by different topic modeling algorithms.  
 
-**Goal / Description:**  
-Compare LLM performance across different topic modeling algorithms (LDA, NMF, BERTopic).
+**Preconditions:**
+- Outputs from multiple topic modeling algorithms (LDA, NMF, BERTopic, etc.) are available.
+- TopicBench can ingest these outputs.
 
 **Expected Input:**
-- Topic-model outputs from multiple algorithms.
-- LLM configurations.
+- Topic-model outputs with keyword clusters, tagged by algorithm.
+- List of LLMs to evaluate.
 
 **Expected Output:**
-- Performance statistics per (algorithm, model) combination.
+- Matrix or plots showing performance per (algorithm, model) pair.
 
 **Main Flow:**
-1. User loads topic outputs and associates them with algorithms.
-2. System runs LLM labeling over each algorithm’s topics.
-3. System aggregates and displays comparison metrics.
+1. Data scientist loads topic-model outputs into TopicBench.
+2. Selects the LLMs to evaluate.
+3. TopicBench runs labeling for each (algorithm, model) combination.
+4. TopicBench computes metrics for each combination.
+5. TopicBench visualizes results as tables/heatmaps to inspect trade-offs.
 
+**Exceptions:**
+- Some topic-model outputs are missing required fields.
+- One model fails for a specific algorithm’s topics.
 
 ---
 
-## UC4.2 – Cross-comparison analysis tools
-
-**Actor:** Data Scientist  
-
-**Goal / Description:**  
-Cross-comparison analysis tools.
-
-**Expected Input:**
-- Benchmark results across algorithms and models.
-
-**Expected Output:**
-- Visualizations (e.g., matrices) that support cross-comparison.
-
-**Main Flow:**
-1. System provides analysis views over results.
-2. User explores trade-offs between topic methods and LLM performance.
-
----
-
-## UC5.1 – Update LLM API integrations when providers change APIs
+## UC5 – Update dependencies and check nothing broke
+**Related User Story:** Maintainer  
 
 **Actor:** Maintainer  
+**Goal:** Update TopicBench when models/APIs or dependencies change, and ensure everything still works.  
 
-**Goal / Description:**  
-Update LLM API integrations when providers change APIs.
-
-**Expected Input:**
-- New API specs, keys, and endpoints.
-
-**Expected Output:**
-- Updated integration layer that still passes tests.
-
-**Main Flow:**
-1. Maintainer modifies integration code.
-2. Maintainer runs tests.
-3. Changes are merged after successful checks.
-
-
----
-## UC5.2 – Run tests to ensure updates don't break functionality
-
-**Actor:** Maintainer  
-
-**Goal / Description:**  
-Run tests to ensure updates don't break functionality.
+**Preconditions:**
+- Project has a clear dependency specification (requirements, setup.py).
+- Test suite exists.
 
 **Expected Input:**
-- Test suite and updated code.
+- New dependency versions or updated API specifications.
 
 **Expected Output:**
-- Pass/fail test results.
+- Updated, working code that passes all tests.
 
 **Main Flow:**
-1. Maintainer runs local tests or CI.
-2. System reports any failures.
-3. Maintainer fixes issues before release.
+1. Maintainer identifies a dependency or API that changed.
+2. Updates config and integration code accordingly.
+3. Runs the test suite (locally or via CI).
+4. Fixes any failing tests.
+5. Commits and documents the update.
 
+**Exceptions:**
+- Breaking changes require refactoring multiple modules.
+- Tests reveal regressions that need design changes.
 
 ---
 
-## UC6.1 – Contribute new gold standard labels for existing keyword clusters
+## UC6 – Contribute new label sets via pull request
+**Related User Story:** Contributor  
 
 **Actor:** Contributor  
 
-**Goal / Description:**  
-Contribute new gold standard labels for existing keyword clusters.
+**Goal:** Add new label sets (beyond built-in gold/human labels) and share them with others.  
+
+**Preconditions:**
+- Contributor has a GitHub account and fork of the repo.
+- Standard label format (JSON schema) is documented.
 
 **Expected Input:**
-- New label sets in standardized format.
+- Label file in the documented format.
+- Short description of the label source or method.
 
 **Expected Output:**
-- Additional label resources available in TopicBench.
+- New label set available as an option in TopicBench.
 
 **Main Flow:**
-1. Contributor prepares label file.
-2. Contributor submits via pull request.
-3. Maintainer reviews and merges.
+1. Contributor prepares label file following the documented schema.
+2. Runs local validation script (if provided).
+3. Opens a pull request with the new labels and description.
+4. Maintainer reviews, may request changes, and merges if acceptable.
 
-
----
-## UC6.2 – Submit labels via pull request
-
-**Actor:** Contributor  
-
-**Goal / Description:**  
-Submit labels via pull request.
-
-**Expected Input:**
-- GitHub fork/branch with label files.
-
-**Expected Output:**
-- Merged contribution adding labels.
-
-**Main Flow:**
-1. Contributor opens PR.
-2. Maintainers review and request changes if needed.
-3. PR is merged.
-
+**Exceptions:**
+- File fails validation or violates schema.
+- Missing documentation or incomplete labels.
 
 ---
-## UC7.1 – Search repository for exposed API keys
+
+## UC7 – Attempt to find API keys in the repository
+**Related User Story:** Nefarious User  
 
 **Actor:** Nefarious User  
 
-**Goal / Description:**  
-Search repository for exposed API keys.
+**Goal:** Search for API keys or other private data to steal from the repository.  
+
+**Preconditions:**
+- Repository is public (or accessible).
 
 **Expected Input:**
-- Public repository contents and commit history.
+- Access to repository files and commit history.
 
 **Expected Output (Desired System Behavior):**
-- No real API keys present; search yields no usable secrets.
+- No real API keys or secrets present.
 
 **Main Flow:**
-1. User searches repo files and history.
-2. System design ensures keys are not stored there.
+1. Malicious user clones or browses the repository.
+2. Searches for patterns like "api_key" or ".env".
+3. Scans commit history for accidentally committed credentials.
 
+**Expected System Response:**
+- Secrets are absent because they are kept in environment variables.
+- `.gitignore` prevents committing secret files.
+- Docs warn users not to commit keys.
 
----
-## UC7.2 – Find credentials in commit history
-
-**Actor:** Nefarious User  
-
-**Goal / Description:**  
-Find credentials in commit history.
-
-**Expected Input:**
-- Git history of the repository.
-
-**Expected Output (Desired System Behavior):**
-- History does not contain secrets; any config uses placeholders.
-
-**Main Flow:**
-1. User inspects past commits.
-2. Repository policy and tooling prevent committing secrets.
+**Exceptions (Bad Case):**
+- If a secret is ever found, maintainers must revoke it and rotate keys.
