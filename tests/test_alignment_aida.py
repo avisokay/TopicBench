@@ -7,12 +7,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import pandas as pd
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
-from src.semantic_similarity import calculate_embedding_cosine
 from src.validate import compute_alignment
-import pytest
-from src.semantic_similarity import calculate_embedding_cosine
 
 """df = pd.read_csv("/Users/aidamustafanova/src/data/example.csv")
 df.head()

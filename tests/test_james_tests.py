@@ -10,7 +10,6 @@ from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import jaccard_score
-import pytest
 import numpy as np
 
 # Loading up CSV

@@ -4,12 +4,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import pandas as pd
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
 from src.semantic_similarity import calculate_embedding_cosine
 from src.validate import compute_alignment
-from hypothesis import given, strategies as st
-from hypothesis.extra.numpy import arrays
 import pytest
 
 # manually create data for testing
