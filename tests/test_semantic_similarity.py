@@ -1,3 +1,6 @@
+"""
+Tests for semantic similarity functions in src.semantic_similarity.
+"""
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
