@@ -1,5 +1,53 @@
 import pandas as pd
 import numpy as np
+from src.semantic_similarity import (
+    calculate_overlap,
+    calculate_embedding_cosine,
+    calculate_embedding_euclidean,
+    calculate_embedding_manhattan,
+    calculate_embedding_angular
+)
+
+def score_similarity(label1: str, label2: str, metric = "cosine"):
+    '''
+    Score the semantic similarity of two labels.
+
+    Input: Two labels (strings).
+    Input: Similarity metric (default: Cosine). Options: "cosine", "euclidean", "manhattan", "angular", "bleu", "jaccard"
+    Output: Similarity score (float).
+    '''
+
+    # Create a temporary DataFrame row structure to use with semantic_similarity functions
+    temp_df = pd.DataFrame({'label1': [label1], 'label2': [label2]})
+    row = temp_df.iloc[0]
+
+    if metric.lower() == "cosine":
+        result = calculate_embedding_cosine(row, 'label1', 'label2')
+        return float(result['Cosine_Similarity'])
+
+    elif metric.lower() == "euclidean":
+        result = calculate_embedding_euclidean(row, 'label1', 'label2')
+        return float(result['Euclidean_Distance'])
+
+    elif metric.lower() == "manhattan":
+        result = calculate_embedding_manhattan(row, 'label1', 'label2')
+        return float(result['Manhattan_Distance'])
+
+    elif metric.lower() == "angular":
+        result = calculate_embedding_angular(row, 'label1', 'label2')
+        return float(result['Angular_Distance'])
+
+    elif metric.lower() == "bleu":
+        result = calculate_overlap(row, 'label1', 'label2')
+        return float(result['BLEU'])
+
+    elif metric.lower() == "jaccard":
+        result = calculate_overlap(row, 'label1', 'label2')
+        return float(result['Jaccard'])
+
+    else:
+        raise ValueError(f"Unknown metric '{metric}'. Choose from: cosine, euclidean, manhattan, angular, bleu, jaccard")
+
 
 def compute_alignment(df, human_col="human_similarity", ai_col="ai_similarity", tau=1):
     '''

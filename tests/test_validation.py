@@ -77,6 +77,8 @@ df['ai_similarity'] = ai_similarity['Cosine_Similarity']
 # compute alignment
 results = compute_alignment(df, human_col='human_similarity', ai_col='ai_similarity', tau=1)
 
+print(results)
+
 @pytest.mark.parametrize("tau_param", [0, 1, 2]) # test for different tau values
 
 def test_tau(tau_param):
