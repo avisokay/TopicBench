@@ -6,10 +6,10 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-from topicbench.src.semantic_similarity import calculate_embedding_cosine
-from topicbench.src.validate import compute_alignment
+from topicbench.semantic_similarity import calculate_embedding_cosine
+from topicbench.validate import compute_alignment
 import pytest
-from topicbench.src.semantic_similarity import calculate_embedding_cosine
+from topicbench.semantic_similarity import calculate_embedding_cosine
 
 """df = pd.read_csv("/Users/aidamustafanova/TopicBench/data/example.csv")
 df.head()

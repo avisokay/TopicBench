@@ -6,8 +6,8 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-from topicbench.src.semantic_similarity import calculate_embedding_cosine
-from topicbench.src.validate import compute_alignment
+from topicbench.semantic_similarity import calculate_embedding_cosine
+from topicbench.validate import compute_alignment
 from hypothesis import given, strategies as st
 from hypothesis.extra.numpy import arrays
 import pytest
