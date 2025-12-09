@@ -9,7 +9,7 @@ Based on our user research, TopicBench is designed for three primary groups:
 * **Data Scientists:** Analysts looking to understand the trade-offs between different topic modeling algorithms (e.g., LDA, BERTopic) and LLM labeling capabilities.
 
 ## How to install the package
-To install TopicBench, you need Python 3.10 or higher. Since this package is currently in development, we recommend installing it in "editable" mode.
+To install TopicBench, you need Python 3.9 or higher. Since this package is currently in development, we recommend installing it in "editable" mode.
 
 1.  **Clone the repository:**
     ```
