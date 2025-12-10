@@ -77,7 +77,7 @@ print(final_df)
   Center for Quantitative Sciences, University of Washington  
   - Wrote functions to calculate distance measures and tests for these
   - Edited documentation  
-  - Created YAML file for the Conda environment  
+  - Created YAML file for making a conda environment  
   - Set up GitHub Actions for testing and linting  
 
   Zilin Cheng  
