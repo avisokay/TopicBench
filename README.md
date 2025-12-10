@@ -70,22 +70,22 @@ print(final_df)
 
 ## Team Members
 
-- **Adam Visokay**  
+  Adam Visokay  
   Department of Sociology, University of Washington  
 
-- **Hilary Bayer**  
+  Hilary Bayer  
   Center for Quantitative Sciences, University of Washington  
   - Wrote functions to calculate distance measures and statistical tests  
   - Edited documentation  
   - Created YAML file for the Conda environment  
   - Set up GitHub Actions for testing and linting  
 
-- **Zilin Cheng**  
+  Zilin Cheng  
   School of Pharmacy, University of Washington  
 
-- **Aida Mustafanova**  
+  Aida Mustafanova  
   Department of Applied Mathematics, University of Washington  
 
-- **James Stewart**  
+  James Stewart  
   Department of Urban Design and Planning, University of Washington
 
