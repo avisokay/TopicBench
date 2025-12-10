@@ -44,12 +44,11 @@ jobs:
       - name: Install
         run: pip install --no-deps .
 
-      - name: Install Pylint
-        run: conda install pylint
+      - name: Install Ruff
+        run: pip install ruff
       
-      - name: Lint with Pylint
-        run: |
-          pylint ${{ env.ENV_NAME }}
+      - name: Lint with Ruff
+        run : ruff check
 
       - name: Run Tests
         run: |
