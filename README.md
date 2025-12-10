@@ -68,11 +68,24 @@ print(final_df)
 | **1** | Biology | Life Science | 0.7412 |
 | **2** | Economy | Stock Market | 0.5123 |
 
-## Team members
-- Adam Visokay, Department of Sociology, University of Washington
-- Hilary Bayer, Center for Quantitative Sciences, University of Washington
-  Wrote functions to calculate distance measures and tests for these, edited documentation, created yaml file for conda environment, and set up GitHub action for testing and linting.
-- Zilin Cheng, School of Pharmacy, University of Washington
-- Aida Mustafanova, Department of Applied Mathematics, University of Washington
-- James Stewart, Department of Urban Design and Planning, University of Washington
+## Team Members
+
+- **Adam Visokay**  
+  Department of Sociology, University of Washington  
+
+- **Hilary Bayer**  
+  Center for Quantitative Sciences, University of Washington  
+  - Wrote functions to calculate distance measures and statistical tests  
+  - Edited documentation  
+  - Created YAML file for the Conda environment  
+  - Set up GitHub Actions for testing and linting  
+
+- **Zilin Cheng**  
+  School of Pharmacy, University of Washington  
+
+- **Aida Mustafanova**  
+  Department of Applied Mathematics, University of Washington  
+
+- **James Stewart**  
+  Department of Urban Design and Planning, University of Washington
 
