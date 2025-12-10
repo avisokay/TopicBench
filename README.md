@@ -75,7 +75,7 @@ print(final_df)
 
   Hilary Bayer  
   Center for Quantitative Sciences, University of Washington  
-  - Wrote functions to calculate distance measures and statistical tests  
+  - Wrote functions to calculate distance measures and tests for these
   - Edited documentation  
   - Created YAML file for the Conda environment  
   - Set up GitHub Actions for testing and linting  
