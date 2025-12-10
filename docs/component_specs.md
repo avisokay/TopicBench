@@ -98,7 +98,7 @@ None (Pure functions).
 
 # Interactions to accomplish use case 1: 
 
-For a user wishing to accomplish the first use case, evaluating a new LLM on topic labeling, the process simply involves applying the first, second, and third components sequentially. The user begins by inputing the name of their LLM of interest and an API key if necessary, along with the example keyword data provided with TopicBench to the first component, and receives a set of labels as output. Next, they use the second component to calculate the similarity between these generated labels and the example human labels included with TopicBench. Finally, using both sets of labels as input, they apply the third component to calculate alignment between them. The greater the fraction of labels for which the human and LLM labels are aligned, the better the LLM performed.
+For a user wishing to evaluate a new LLM on topic labeling, they simply need to apply the first, second, and third components sequentially. The user begins by inputing the name of an LLM and an API key, if necessary, along with the example keyword data provided with TopicBench to the first component, and receives a set of labels as output. Next, they use the second component to calculate the similarity between these generated labels and the example human labels included with TopicBench. Finally, using both sets of labels as input, they apply the third component to calculate alignment between them. The greater the fraction of labels for which the human and LLM labels are aligned, the better the LLM performed.
 
 # Components for different users
 
