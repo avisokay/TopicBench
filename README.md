@@ -92,4 +92,8 @@ print(final_df)
 
   James Stewart  
   Department of Urban Design and Planning, University of Washington
+  - Wrote functions under token overlap for tech review
+  - Ran tests and fixed bugs, such as updating import paths
+  - Assisted with final presentation and theme
+  - Wrote tests for token overlap
 
