@@ -72,6 +72,11 @@ print(final_df)
 
   Adam Visokay  
   Department of Sociology, University of Washington  
+  - Wrote functions to evaluate similarity metrics with different global anchors.
+  - Wrote function to use LLM as topic labelers.
+  - Created an example notebook that demonstrates a full benchmarking pipeline.
+  - Wrote user stories.
+  - Wrote and edited documentation to clarify. 
 
   Hilary Bayer  
   Center for Quantitative Sciences, University of Washington  
