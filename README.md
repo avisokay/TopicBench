@@ -81,7 +81,11 @@ print(final_df)
   - Set up GitHub Actions for testing and linting  
 
   Zilin Cheng  
-  School of Pharmacy, University of Washington  
+  School of Pharmacy, University of Washington
+  - Wrote functions to claculate the similarity using LLM as judge.
+  - Test for the LLM as judge.
+  - Edited documentation, wrote README and first part of component specs.
+  - Wrote a deno example for similarity.  
 
   Aida Mustafanova  
   Department of Applied Mathematics, University of Washington  
