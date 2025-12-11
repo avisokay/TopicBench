@@ -89,6 +89,11 @@ print(final_df)
 
   Aida Mustafanova  
   Department of Applied Mathematics, University of Washington  
+  - Wrote functions for embedding cosine similarity for tech review
+  - Edited user stories and use cases to match the project requirements
+  - Improved docstrings across several modules for clarity and consistency
+  - Cleaned code according to pylint style guidelines
+
 
   James Stewart  
   Department of Urban Design and Planning, University of Washington
