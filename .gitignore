@@ -6,6 +6,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# claude agents
+.claude
+
 # C extensions
 *.so
 
