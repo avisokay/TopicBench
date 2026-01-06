@@ -1,6 +1,13 @@
 # TopicBench
 Benchmarking LLMs on the labeling of keyword clusters from topic modeling in computational social science.
 
+## Workflow
+Given: keyword clusters and topic labels (separate labels for each the original authors and alternative human annotators) for several peer reviewed papers in Computational Social Science. 
+1. use LLM(s) to provide model-specific topic labels
+2. calculate semantic similarity scores relative to original author labels
+3. evaluate against human-human comparison
+4. score each model on each paper
+
 ## How to install the package
 To install TopicBench, you need Python 3.9 or higher. Since this package is currently in development, we recommend installing it in "editable" mode.
 
