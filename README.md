@@ -127,40 +127,8 @@ After computing similarities and alignment, compare model performance:
 
 ## Team Members
 
-  Adam Visokay  
-  Department of Sociology, University of Washington  
-  - Wrote functions to evaluate similarity metrics with different global anchors.
-  - Wrote function to use LLM as topic labelers.
-  - Created an example notebook that demonstrates a full benchmarking pipeline.
-  - Wrote user stories.
-  - Wrote and edited documentation to clarify. 
+Adam Visokay (contact)
+avisokay@uw.edu
+Department of Sociology, University of Washington
 
-  Hilary Bayer  
-  Center for Quantitative Sciences, University of Washington  
-  - Wrote functions to calculate distance measures and tests for these
-  - Edited documentation  
-  - Created YAML file for making a conda environment  
-  - Set up GitHub Actions for testing and linting  
-
-  Zilin Cheng  
-  School of Pharmacy, University of Washington
-  - Wrote functions to claculate the similarity using LLM as judge.
-  - Test for the LLM as judge.
-  - Edited documentation, wrote README and first part of component specs.
-  - Wrote a deno example for similarity.  
-
-  Aida Mustafanova  
-  Department of Applied Mathematics, University of Washington  
-  - Wrote functions for embedding cosine similarity for tech review
-  - Edited user stories and use cases to match the project requirements
-  - Improved docstrings across several modules for clarity and consistency
-  - Cleaned code according to pylint style guidelines
-
-
-  James Stewart  
-  Department of Urban Design and Planning, University of Washington
-  - Wrote functions under token overlap for tech review
-  - Ran tests and fixed bugs, such as updating import paths
-  - Assisted with final presentation and theme
-  - Wrote tests for token overlap
-
+an earlier version of this package was built as a collaborative class project with contributions from Hilary Bayer, Zilin Cheng, Aida Mustafanova, and James Stewart.
