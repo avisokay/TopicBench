@@ -45,3 +45,9 @@ Issues = "https://github.com/avisokay/TopicBench/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
+
+[tool.ruff.lint]
+# Ruff 0.16 turned many rule families on by default (I, SIM, BLE, S, EXE, PLC...).
+# Pin the selection explicitly so a ruff release cannot change what CI enforces.
+# Widen this deliberately rather than by upgrade.
+select = ["E4", "E7", "E9", "F"]
