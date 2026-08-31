@@ -1,0 +1,1879 @@
+[
+ {
+  "idx": 2,
+  "work_id": "W2153383412",
+  "title": "A Bayesian Hierarchical Topic Model for Political Texts: Measuring Expressed Agendas in Senate Press Releases",
+  "source": "pdf",
+  "evidence_pages": [
+   14,
+   28
+  ],
+  "method_note": "custom Bayesian hierarchical mixture model (the 'expressed agenda model'), not LDA/STM; each press release assigned to one topic, author-level priorities estimated by variational inference",
+  "flags": "method is a bespoke model, coded as 'other'; labeling quote not requested but section 7.1 does describe reading 10 high-probability documents per topic",
+  "confidence": "high"
+ },
+ {
+  "idx": 3,
+  "work_id": "W2144874182",
+  "title": "How to Analyze Political Attention with Minimal Assumptions and Costs",
+  "source": "pdf",
+  "evidence_pages": [
+   7,
+   8,
+   10
+  ],
+  "method_note": "bespoke dynamic multinomial mixture topic model (single topic per document, dynamic linear model prior), fit by ECM; not LDA/STM",
+  "flags": "custom model coded as 'other'; quote not requested but p.8/p.10 describe labeling from beta estimates plus reading randomly chosen high-probability documents",
+  "confidence": "high"
+ },
+ {
+  "idx": 4,
+  "work_id": "W2606103268",
+  "title": "What can we learn from corporate sustainability reporting? Deriving propositions for research and practice fro",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   6
+  ],
+  "method_note": "Paper fits LDA (Gensim/Mallet); previous 'other' was an abstract-based guess.",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 5,
+  "work_id": "W2515855575",
+  "title": "Large-Scale Computerized Text Analysis in Political Science: Opportunities and Challenges",
+  "source": "pdf",
+  "evidence_pages": [
+   9,
+   10
+  ],
+  "method_note": "review article that runs its own illustration: 17 LDA models with k=10-90, topics grouped into metatopics by cosine similarity plus spectral clustering",
+  "flags": "review/methods essay; the topic model is illustrative rather than the paper's substantive contribution",
+  "confidence": "high"
+ },
+ {
+  "idx": 6,
+  "work_id": "W2790855988",
+  "title": "Applying LDA Topic Modeling in Communication Research: Toward a Valid and Reliable Methodology",
+  "source": "pdf",
+  "evidence_pages": [
+   9,
+   17
+  ],
+  "method_note": "LDA (Gibbs sampling) with a proposed semantic-network clustered initialization; demonstration corpus of food-safety web content",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 7,
+  "work_id": "W4220794871",
+  "title": "Applications of machine learning and deep learning methods for climate change mitigation and adaptation",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5,
+   6
+  ],
+  "method_note": "LDA via Python gensim, run separately on mitigation and adaptation subsets of 254 retrieved articles; K=20 with 10 words per topic, later merged into 16 mitigation and 13 adaptation topics",
+  "flags": "bibliometric literature review; the modeled text is article keyword lists rather than full documents",
+  "confidence": "high"
+ },
+ {
+  "idx": 8,
+  "work_id": "W2325650048",
+  "title": "Big Social Data Analytics in Journalism and Mass Communication",
+  "source": "pdf",
+  "evidence_pages": [
+   1,
+   3,
+   6
+  ],
+  "method_note": "LDA with tweet-pooling preprocessing, compared against a dictionary-based method on 77 million election tweets about Obama and Romney",
+  "flags": "methods-comparison paper (LDA vs dictionary-based analysis)",
+  "confidence": "high"
+ },
+ {
+  "idx": 9,
+  "work_id": "W4212914354",
+  "title": "Feminism in women’s business networks: A freedom-centred perspective",
+  "source": "pdf",
+  "evidence_pages": [
+   7,
+   9
+  ],
+  "method_note": "LDA run in MALLET over k=10-70, 30-topic solution retained; topic modeling is step one of a two-step inductive design followed by qualitative dialectical analysis",
+  "flags": "quote not requested; p.9 does describe each author independently examining models and interpreting topics",
+  "confidence": "high"
+ },
+ {
+  "idx": 11,
+  "work_id": "W3049445821",
+  "title": "When Public Health Research Meets Social Media: Knowledge Mapping From 2000 to 2018",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5
+  ],
+  "method_note": "LDA via the tm package in R; previous 'other' was an abstract-based guess.",
+  "flags": "corpus refined: PDF confirms the modeled unit is the article abstracts of the 3419 retrieved studies",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 12,
+  "work_id": "W4395691375",
+  "title": "African time travellers: What can we learn from 500 years of written accounts?",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   13,
+   24
+  ],
+  "method_note": "STM with covariates for date, region, nationality and traveller occupation; 855 OCR'd travelogues, 25 topics",
+  "flags": "quote not requested; p.24 states labels were chosen by topic domain experts coding paragraph samples, and an LLM was used only to validate labels, not to generate them",
+  "confidence": "high"
+ },
+ {
+  "idx": 13,
+  "work_id": "W4397019829",
+  "title": "Gendered Judicial Opinions",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   6
+  ],
+  "method_note": "STM with 50 topics, prevalence varying by circuit and year, fitted to over 300,000 published and unpublished appellate opinions from the Caselaw Access Project",
+  "flags": "labeling sentence is brief (hand-coded from STM descriptive measures); no coder-reconciliation detail given",
+  "confidence": "medium"
+ },
+ {
+  "idx": 14,
+  "work_id": "W2943121181",
+  "title": "Topic Modeling in Management Research: Rendering New Theory from Textual Data",
+  "source": "pdf",
+  "evidence_pages": [
+   18,
+   19,
+   20
+  ],
+  "method_note": "review essay that runs its own meta-analysis: LDA via collapsed Gibbs sampling in MALLET, 35-topic model over 5,362 paragraph-documents drawn from 66 management articles",
+  "flags": "review/methods article; the LDA run is a meta-analysis of the literature it reviews",
+  "confidence": "medium"
+ },
+ {
+  "idx": 15,
+  "work_id": "W4413297844",
+  "title": "Awakening, condensation, and sedimentation: the correlation mechanism between topics and emotions in online pu",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   9,
+   10
+  ],
+  "method_note": "LDA fitted per event stage with gensim; TextCNN/Word2Vec used only for sentiment, not topic modeling.",
+  "flags": "quote missing: paper names topics in Table 2 but never says how the topic names were derived; only 'labeling' described is emotion labeling of training data (excluded)",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 17,
+  "work_id": "W3011194278",
+  "title": "Disparities in a Flagship Political Science Journal? Analyzing Publication Patterns in the Journal of Politics",
+  "source": "pdf",
+  "evidence_pages": [
+   5
+  ],
+  "method_note": "LDA over the full text of 3,311 JOP research articles; sole author labels topics himself",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 18,
+  "work_id": "W2796751708",
+  "title": "Flying to Quality: Cultural Influences on Online Reviews",
+  "source": "pdf",
+  "evidence_pages": [
+   19,
+   21
+  ],
+  "method_note": "paper actually fits a structural topic model (K=20, FREX-based inspection) to airline reviews; the file currently records method as 'lda'",
+  "flags": "method_now='lda' looks wrong - the text repeatedly says 'our STM solution' and uses stm-specific diagnostics (heldout likelihood, semantic coherence, exclusivity, FREX); a curator may want to change it to stm",
+  "confidence": "high"
+ },
+ {
+  "idx": 19,
+  "work_id": "W3014874646",
+  "title": "Regulated Dependence: Platform Workers’ Responses to New Forms of Organizing",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   7,
+   9
+  ],
+  "method_note": "Structural Topic Model on 36,531 forum posts from 12 US cities and London, with regulatory structure as covariate; complemented by qualitative interview and document analysis",
+  "flags": "quote not requested and not separately verified",
+  "confidence": "high"
+ },
+ {
+  "idx": 20,
+  "work_id": "W2899935010",
+  "title": "Topics and trends: 30 years of sociology of sport",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   5,
+   6,
+   7
+  ],
+  "method_note": "LDA via the R topicmodels package on full texts of 1,923 articles from SSJ, IRSS and JSSI",
+  "flags": "quote not requested and not separately verified",
+  "confidence": "high"
+ },
+ {
+  "idx": 21,
+  "work_id": "W4220847937",
+  "title": "COVID-19 vaccine perceptions in the initial phases of US vaccine roll-out: an observational study on reddit",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   11
+  ],
+  "method_note": "method_now was 'missing'; PDF states Structural Topic Model (stm R package), k=20. Second corroborating passage p4: 'Two authors assigned topics (IC, AG) [Cohen’s kappa (k) >0.8] and a third author (NK) resolved disagreements when they arose'.",
+  "flags": "quote is from the supplement bound with the PDF (p11)",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 22,
+  "work_id": "W3049762273",
+  "title": "Social work and technology: Text mining three decades of scholarly literature (1985–2018)",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   8
+  ],
+  "method_note": "LDA fitted with MALLET to abstracts/titles of 685 peer-reviewed JTHS articles.",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 23,
+  "work_id": "W4382809527",
+  "title": "What makes a theme park experience less enjoyable? Evidence from online customer reviews of Disneyland China",
+  "source": "pdf",
+  "evidence_pages": [
+   2
+  ],
+  "method_note": "STM (stm R package), K=20; reviews scraped from Meituan.",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 24,
+  "work_id": "W4399998661",
+  "title": "The Reddit cannabis subjective highness rating scale: Applying computational social science to explore psychol",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "STM (stm R package v1.8.6), k=40, subjective highness as prevalence covariate; LIWC used alongside but is not a topic model.",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 25,
+  "work_id": "W2251383488",
+  "title": "Beyond LDA: Exploring Supervised Topic Modeling for Depression-Related Language in Twitter",
+  "source": "pdf",
+  "evidence_pages": [
+   1,
+   2
+  ],
+  "method_note": "Coppersmith et al. CLPsych Twitter collection (~3M tweets, ~2,000 users, ~600 self-reporting clinical depression), tweets aggregated per user; a Pennebaker stream-of-consciousness essay set is used only to seed priors. Variants run: LDA, supervised LDA, supervised nested/hierarchical LDA, anchor-based topic models - all lda family.",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 26,
+  "work_id": "W2154608152",
+  "title": "Scaling up the evaluation of psychotherapy: evaluating motivational interviewing fidelity via statistical text",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5
+  ],
+  "method_note": "labeled (semi-supervised) topic model, an LDA variant; topics are tied to MISC behavioural codes.",
+  "flags": "thin/indirect: topic labels are pre-specified supervised MISC codes (plus generic 'Background Label 1/10'), not author interpretation of top words; nearest interpretive sentence is 'Prior to assessing prediction accuracy of model-based MISC codes, we descriptively examined the topics generated by the model (Table 2).'",
+  "confidence": "low",
+  "pass": 2,
+  "audit": "quote reverted: L-LDA model spec / supervised MISC codes, not label derivation"
+ },
+ {
+  "idx": 27,
+  "work_id": "W4221056004",
+  "title": "Analyzing genderless fashion trends of consumers’ perceptions on social media: using unstructured big data ana",
+  "source": "pdf",
+  "evidence_pages": [
+   7,
+   8,
+   12
+  ],
+  "method_note": "LDA in Python on Korean NAVER blog/community posts, k=18.",
+  "flags": "corroborating sentence on p12: 'The topic labeling process was discussed and confirmed by five experts in the fashion and textile industries.'",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 28,
+  "work_id": "W4391839376",
+  "title": "Analyzing public demands on China’s online government inquiry platform: A BERTopic-Based topic modeling study",
+  "source": "pdf",
+  "evidence_pages": [
+   12,
+   14
+  ],
+  "method_note": "BERTopic pipeline (SBERT + UMAP + HDBSCAN + c-TF-IDF), 27 secondary topics manually merged to 10 primary topics.",
+  "flags": "corroborating sentence p14: 'Based on this, the primary and secondary topics were named, and the results and main topic keywords are shown in Table 3.'; corpus phrase made specific (Hangzhou 'People Call Me' platform, 17,593 letters, June 2022-May 2023)",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 29,
+  "work_id": "W4391771631",
+  "title": "Examining school sector and mission in a landscape of parental choice",
+  "source": "pdf",
+  "evidence_pages": [
+   7,
+   8,
+   9
+  ],
+  "method_note": "STM on 902 mission statements from 547 traditional public, charter, Catholic and other private schools at two time points, with sector and year as covariates.",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 31,
+  "work_id": "W2159544539",
+  "title": "Computer-Assisted Text Analysis for Comparative Politics",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   10,
+   11
+  ],
+  "method_note": "Methods article demonstrating the STM (R stm package) on two illustrative corpora: 27,248 texts (mostly fatwas) from Nielsen's Muslim-cleric collection, and machine-translated Arabic/Chinese social media responses to the June 2013 Snowden event.",
+  "flags": "two applications in one methods paper; corpus is necessarily a compound phrase",
+  "confidence": "high"
+ },
+ {
+  "idx": 32,
+  "work_id": "W3085890295",
+  "title": "Natural Language Processing Reveals Vulnerable Mental Health Support Groups and Heightened Health Anxiety on R",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4,
+   10
+  ],
+  "method_note": "method_now was 'missing'; LDA estimated with gensim on TF-IDF features, 10 topics (separate pre- and midpandemic models). Spectral clustering also used but is not a topic model.",
+  "flags": "thin: quote is from the Figure 4 caption and only says the topics were manually labelled; no method-section account of the labeling. Separate cluster-annotation sentence on p3 refers to the spectral clusters, not LDA topics.",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 33,
+  "work_id": "W3136892313",
+  "title": "Customer expectations in the hotel industry during the COVID-19 pandemic: a global perspective using sentiment",
+  "source": "pdf",
+  "evidence_pages": [
+   7,
+   9
+  ],
+  "method_note": "LDA via Gensim; number of topics (12) chosen by coherence score; sentiment analysis is a separate lexicon-based strand of the paper.",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 34,
+  "work_id": "W4393863111",
+  "title": "Artificial Intelligence in Influencer Marketing: A Mixed-Method Comparison of Human and Virtual Influencers on",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   6
+  ],
+  "method_note": "LDA on a random sample of 10,000 English-language Instagram posts (5,000 human, 5,000 virtual influencers) drawn from 99,680 posts by 424 influencers retrieved via CrowdTangle.",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 35,
+  "work_id": "W4389507148",
+  "title": "Digital natives in the scientific literature: A topic modeling approach",
+  "source": "pdf",
+  "evidence_pages": [
+   4
+  ],
+  "method_note": "STM (R stm package) on titles, abstracts and keywords of 1,886 Scopus articles; 16-topic model chosen by two researchers rating candidate models.",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 36,
+  "work_id": "W2345106796",
+  "title": "Content Coding of Psychotherapy Transcripts Using Labeled Topic Models",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   6
+  ],
+  "method_note": "labeled LDA (L-LDA), a semi-supervised LDA variant, plus unsupervised background topics; documents are talk-turns/sessions.",
+  "flags": "labels are pre-existing corpus annotation codes rather than author-interpreted names; nearest interpretive sentence p6: 'Prior to assessing predictive performance measures, we qualitatively examined the topics generated by the L-LDA model (see Table I).'",
+  "confidence": "medium",
+  "pass": 2,
+  "audit": "quote reverted: supervised annotation codes + generic L-LDA exposition"
+ },
+ {
+  "idx": 37,
+  "work_id": "W3166644387",
+  "title": "The Gendered Division of Labor in Brazilian Political Science Journals",
+  "source": "pdf",
+  "evidence_pages": [
+   12,
+   14
+  ],
+  "method_note": "LDA via the R lda package; number of topics (15) set by the Cao et al. (2009) density-of-intersections criterion.",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 38,
+  "work_id": "W4229011615",
+  "title": "A Topic Modeling Comparison Between LDA, NMF, Top2Vec, and BERTopic to Demystify Twitter Posts",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   6
+  ],
+  "method_note": "All four models fitted on the same tweet corpus; order corrected to the paper's order of presentation (LDA, NMF, Top2Vec, BERTopic) - existing value had bertopic and top2vec swapped.",
+  "flags": "corpus made specific: 31,800 unique English tweets collected Nov 2021 via #covidtravel / #covid + #travel. Quote is stated for the LDA/NMF topic names; Top2Vec/BERTopic naming is discussed only generally ('the results require human interpretation').",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 40,
+  "work_id": "W4308549398",
+  "title": "Evolution of Public Opinion on COVID-19 Vaccination in Japan: Large-Scale Twitter Data Analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5
+  ],
+  "method_note": "LDA via Gensim (p.3); K=15 chosen by coherence score",
+  "flags": "quote covers the manual grouping of the 15 LDA topics into 4 named themes; the paper never states how the individual topic names in Table 1 were chosen, so this is the closest statement of label derivation",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 41,
+  "work_id": "W3048683157",
+  "title": "What Is Important When We Evaluate Movies? Insights from Computational Analysis of Online Reviews",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "Correlated Topic Model (k=38) via topicmodels in R; matches existing method_now ctm",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 42,
+  "work_id": "W2907164972",
+  "title": "Identifying disaster-related tweets and their semantic, spatial and temporal context using deep learning, natu",
+  "source": "pdf",
+  "evidence_pages": [
+   16,
+   17,
+   18
+  ],
+  "method_note": "",
+  "flags": "closest near-miss is the generic exposition 'One can infer the latent topic using the combination of the words that commonly co-occur.' (p.1220) which the rules exclude; the other near-miss, 'We manually observed the topics and individual tweets that were predominantly classified by each topic to determine the optimum number of topics.' (p.1220), is about choosing K, and all other manual-labeling text concerns the supervised training set",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 43,
+  "work_id": "W2795446762",
+  "title": "Applying Computational Analysis to Textual Data from the Wild",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   6
+  ],
+  "method_note": "LDA via the MALLET Java implementation, hyperparameter optimization interval 20, 200 sampling iterations; 2727 reviews analysed",
+  "flags": "quote not requested, but the paper does have a strong labeling-process passage under the heading 'Making sense of the topics' (p.6) if a curator wants it",
+  "confidence": "high"
+ },
+ {
+  "idx": 44,
+  "work_id": "W3049166226",
+  "title": "Consumers’ satisfaction factors mining and sentiment analysis of B2C online pharmacy reviews",
+  "source": "pdf",
+  "evidence_pages": [
+   6
+  ],
+  "method_note": "LDA only; SnowNLP used for sentiment, not a topic model",
+  "flags": "quote is the sentence immediately preceding Table 3, whose 'Interpretation' column holds the factor labels; passive, no agent named",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 45,
+  "work_id": "W2771147969",
+  "title": "How is palliative care understood in the context of dementia? Results from a massive open online course",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "structural topic model fitted with the R 'stm' package, carer category as covariate; abstract-derived 'other' was wrong",
+  "flags": "quote is the note under Table 2, whose 'Contextualised interpretation' columns hold the theme identifiers and descriptions; the fuller procedure is on p.596 ('Following Braun and Clarke,29 two authors (F.M. and K.D.) independently reviewed the representative data items extracted by the first-round TMA process in a line-by-line review of participant posts associated with structural topic model (STM)-generated topics.'). stm's labelTopics function was used only to obtain top/exclusive words, not the names",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 46,
+  "work_id": "W3206380387",
+  "title": "Factors Driving the Popularity and Virality of COVID-19 Vaccine Discourse on Twitter: Text Mining and Data Vis",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "LDA via gensim, K=12 chosen by Cv coherence; LDAvis relevance (lambda=0.6) used to rank words. Abstract-derived 'other' was wrong",
+  "flags": "quote sits immediately before Table 1, whose 'Topic label' column holds the labels; a matching Methods statement is on p.4 ('Lastly, we reviewed sample tweets with the highest topic-specific loadings to finalize topic interpretations.')",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 47,
+  "work_id": "W4226207651",
+  "title": "The space of ideas: Public art policy and the concept of urban model spaces",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   3
+  ],
+  "method_note": "Structural Topic Modeling plus regression; corpus spans plans, cultural plans, guidelines and research reports, 1959-2020",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 50,
+  "work_id": "W2419481308",
+  "title": "Doing Well by Talking Good: A Topic Modelling-Assisted Discourse Study of Corporate Social Responsibility",
+  "source": "pdf",
+  "evidence_pages": [
+   12,
+   14
+  ],
+  "method_note": "LDA via the MALLET package, 80 topics over single words and bigrams; combined with corpus-linguistic discourse analysis",
+  "flags": "quote not requested, but p.14 has an explicit labeling-process passage (economist expert labeling from retrieved word lists)",
+  "confidence": "high"
+ },
+ {
+  "idx": 51,
+  "work_id": "W2894243676",
+  "title": "Firms with benefits: A systematic review of responsible entrepreneurship and corporate social responsibility l",
+  "source": "pdf",
+  "evidence_pages": [
+   6
+  ],
+  "method_note": "",
+  "flags": "thin/indirect - the paper never states how the 'Label' column of Table 3 was written; this is the only passage describing how the authors interpreted the topics themselves (p.270, passive, no agent). Rival near-misses are about topic quality and inclusion filtering: 'The quality of these topics was assessed by reading the top abstracts associated with them.' (p.284)",
+  "confidence": "low",
+  "pass": 2
+ },
+ {
+  "idx": 52,
+  "work_id": "W2740216362",
+  "title": "What Patients Can Tell Us: Topic Analysis for Social Media on Breast Cancer",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   7,
+   8
+  ],
+  "method_note": "LDA fitted with the R 'lda' package, K=20",
+  "flags": "corroborated by the footnote under Tables 2 and 3, 'Topic label was assigned by a medical expert.'",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 53,
+  "work_id": "W2910136931",
+  "title": "Characterizing Trends in Human Papillomavirus Vaccine Discourse on Reddit (2007-2015): An Observational Study",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4,
+   7
+  ],
+  "method_note": "LSA (SVD, dimensions 2-101) is fitted but used to score cosine similarity of messages to cancer/sexual-behaviour keyword lists rather than to extract topics; LDA (K=10, alpha=.1, eta=0.01) supplies the topics in Table 4",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 54,
+  "work_id": "W3212025615",
+  "title": "COVID-19 Vaccine Tweets After Vaccine Rollout: Sentiment–Based Topic Modeling",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   8,
+   9
+  ],
+  "method_note": "LDA run separately on positive/neutral/negative sentiment groups (K=12/10/10 by coherence); VADER supplies sentiment, not a topic model. Abstract-derived 'other' was wrong",
+  "flags": "searched label/name/interpret/assign/title/describe/top words/representative/coder/independently/consensus/manual/expert/according to/summar across all 17 pages; the Methods topic-modeling section (p.3) covers only keyword removal, coherence and K selection. Closest near-miss is the narration under 'Positive Topics' (p.8): 'Topics suggested that people felt happy and grateful that a vaccine had been approved (Table 3), that it is important to get vaccinated, that they were thankful to the health care staff for their efforts, and that they were waiting to be eligible for vaccination.' - content narration, not label derivation. The 'Topic' columns of Tables 3-5 give the names with no statement of how they were produced",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 55,
+  "work_id": "W4281680075",
+  "title": "Dynamic topic modeling of twitter data during the COVID-19 pandemic",
+  "source": "pdf",
+  "evidence_pages": [
+   13,
+   14
+  ],
+  "method_note": "main model is Sequential LDA (SeqLDA, Blei & Lafferty dynamic topic model) in Gensim with 70 topics; static LDA models were also fitted first, on a 3-day subset, to set hyperparameters and K",
+  "flags": "corroborated by the Table 4 caption 'Topic word representations for April 13th and custom labels.' and by 'topic 20, which we labeled Social Distancing' (p.13)",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 56,
+  "work_id": "W2940156422",
+  "title": "Identifying Key Topics Bearing Negative Sentiment on Twitter: Insights Concerning the 2015-2016 Zika Epidemic",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   8,
+   10
+  ],
+  "method_note": "LDA (Gensim), 10 topics per sentiment category, K by perplexity; Word2vec/n-grams feed the sentiment classifier, not the topic model. Abstract-derived 'other' was wrong",
+  "flags": "quote is about the broader theme labels that group the 10 topics; supporting statements: 'The top words belonging to each topic are given as an output, and it is up to the researcher to interpret the topic's meaning.' (p.5) and 'Topics 1 through 6 all contained messages from public health agencies and were therefore labeled as public health messages.' (p.10)",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 57,
+  "work_id": "W2922961772",
+  "title": "Local stakeholders’ narratives about large-scale urban development: The Zhejiang Hangzhou Future Sci-Tech City",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   7
+  ],
+  "method_note": "STM via the R stm package on 319 pre-processed interview texts (photo-elicitation comments from 20 semi-structured interviews), 384 vocabulary words, 10 topics",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 58,
+  "work_id": "W2296470615",
+  "title": "Discovering Design Principles for Persuasive Systems: A Grounded Theory and Text Mining Approach",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "10-topic LDA with TF-IDF weighting on 4,218 App Store reviews of 30 diabetes apps; used as the open-coding step of a grounded-theory design",
+  "flags": "quote not requested, but p.5 has an explicit one: 'To interpret and assign concepts to topics extracted, all researchers independently created the design concepts and then compared the results.'",
+  "confidence": "high"
+ },
+ {
+  "idx": 59,
+  "work_id": "W4401386709",
+  "title": "Guests’ Aesthetic experience with lifestyle hotels: An application of LDA topic modelling analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5,
+   6
+  ],
+  "method_note": "LDA with ten topics; a separate grounded-theory manual coding of 900 reviews runs alongside but is not a topic model",
+  "flags": "corpus phrase replaced only to name the source (TripAdvisor); the two-researcher independent coding described on p.4 is the manual content analysis of Table 4, not the LDA topic labels",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 60,
+  "work_id": "W4406564251",
+  "title": "How humans and machines identify discourse topics: A methodological triangulation",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   6,
+   7
+  ],
+  "method_note": "LDA run in MALLET (10 topics, 10 texts, 98,277 words); the paper compares four ways of labelling the same topic-model output (LLM-assistance, eyeballing, concordance analysis, close reading)",
+  "flags": "Method A labels the topics with ChatGPT 4 and Claude 3.5 (LLM-generated labels) alongside human methods; topic model is the methodological object of study",
+  "confidence": "high"
+ },
+ {
+  "idx": 61,
+  "work_id": "W4396695110",
+  "title": "Climate Communication with Chinese Youth by Chinese Nongovernmental Organizations: A Case Study of Chinese Wea",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5
+  ],
+  "method_note": "dynamic topic model (LDA over time slices); paired with named entity recognition on the same 238 video titles",
+  "flags": "corpus is 238 scraped video titles, not full video transcripts",
+  "confidence": "high"
+ },
+ {
+  "idx": 62,
+  "work_id": "W4401411828",
+  "title": "Talking past each other: Institutional complexity in public projects",
+  "source": "pdf",
+  "evidence_pages": [
+   9,
+   10,
+   11,
+   12
+  ],
+  "method_note": "stm package in R with LDA initialization; two separate models fitted (defence corpus 1,976 speech-act documents, transport corpus 1,187); K chosen via semantic coherence plus manual inspection",
+  "flags": "two corpora / two models in one paper",
+  "confidence": "high"
+ },
+ {
+  "idx": 63,
+  "work_id": "W2343307093",
+  "title": "Topic-based content and sentiment analysis of Ebola virus on Twitter and in the news",
+  "source": "pdf",
+  "evidence_pages": [
+   8,
+   13,
+   15
+  ],
+  "method_note": "n-gram LDA",
+  "flags": "topic labels appear only in Table 8 and figures; no sentence anywhere states how the labels were derived",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 64,
+  "work_id": "W3117955110",
+  "title": "COVID-19: Detecting Government Pandemic Measures and Public Concerns from Twitter Arabic Data Using Distribute",
+  "source": "pdf",
+  "evidence_pages": [
+   14
+  ],
+  "method_note": "LDA implemented in Apache Spark MLlib (describeTopics)",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 66,
+  "work_id": "W4366780972",
+  "title": "Evolution of artificial intelligence research in Technological Forecasting and Social Change: Research topics,",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "STM package in R; corpus is title+abstract+keywords concatenated for 608 screened AI articles (from 799 retrieved via Scopus)",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 67,
+  "work_id": "W2088903821",
+  "title": "Using Twitter for breast cancer prevention: an analysis of breast cancer awareness month",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "LDA via the MALLET implementation",
+  "flags": "thin; the labelled topic table (Table 1) is an author-generated a priori category list, with LDA run afterwards as validation rather than as the source of the labels",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 68,
+  "work_id": "W3094709634",
+  "title": "Concerns Expressed by Chinese Social Media Users During the COVID-19 Pandemic: Content Analysis of Sina Weibo ",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "LDA via the LDA4j Java package; k=17 chosen by coherence score",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 69,
+  "work_id": "W4310197903",
+  "title": "Topical and emotional expressions regarding extreme weather disasters on social media: a comparison of posts f",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4,
+   5
+  ],
+  "method_note": "LDA via gensim; k=5 chosen by perplexity",
+  "flags": "corpus widened: the model is fitted separately to official media posts and to the public comments under them, across two periods (Jul 2021-Mar 2022), not to posts alone",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 70,
+  "work_id": "W3161849626",
+  "title": "Using Social Media Mining and PLS-SEM to Examine the Causal Relationship between Public Environmental Concerns",
+  "source": "pdf",
+  "evidence_pages": [
+   10,
+   11
+  ],
+  "method_note": "LDA estimated with 1000 iterations of Gibbs sampling, k=12; hierarchical cluster analysis and PLS-SEM are downstream steps, not topic models",
+  "flags": "existing method 'other' is wrong - the paper explicitly fits LDA; corpus narrowed from generic 'social media posts' to the Dcard platform in Taiwan",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 71,
+  "work_id": "W4416298317",
+  "title": "Regulatory Means for Interventionist Ends: GBER and the Transformation of the EU State Aid Regime",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   7
+  ],
+  "method_note": "BERTopic (Grootendorst 2022); parameter settings only in the online appendix, not in the PDF",
+  "flags": "llm_or_software_labels; thin - the paper describes only the software-generated c-TF-IDF topic representations, while the human-readable panel names in Figure 1 (Broadband, Horizontal Aid, Market Failure, ...) are never explained",
+  "confidence": "low",
+  "pass": 2,
+  "audit": "quote reverted: generic BERTopic/c-TF-IDF exposition, not what these authors did"
+ },
+ {
+  "idx": 72,
+  "work_id": "W4407712952",
+  "title": "Impact of a Virtual Reality Video (\"A Walk-Through Dementia\") on YouTube Users: Topic Modeling Analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5,
+   6
+  ],
+  "method_note": "BERTopic (Python package v0.16.0) with BERT embeddings; compared against LDA and NMF on topic diversity but only BERTopic is fitted for the results",
+  "flags": "llm_or_software_labels for the 8 raw topic names, which BERTopic generated (e.g. “dementia_like_just”); the 5 reported theme labels are the authors' own, per the quoted sentence",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 73,
+  "work_id": "W7125814608",
+  "title": "How audiences express emotions towards influencer short videos: Sentiment analysis of ‘my second uncle’",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   7,
+   9
+  ],
+  "method_note": "LDA via gensim with default priors; k chosen by coherence (6, 8 and 3 for the three sub-corpora)",
+  "flags": "the same statement recurs at pp.6-7 for the comment data (\"...selected and used to label the topics\"); ChatGPT is used for sentiment classification only, not for topic labels",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 74,
+  "work_id": "W4391521890",
+  "title": "Using Latent Dirichlet Allocation to Explore the Dimensionality of the U.S. Practice of Law",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   3,
+   4
+  ],
+  "method_note": "LDA over 437,210 very short documents (100 unique practice-area terms); Biterm Topic Model considered but rejected",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 75,
+  "work_id": "W2607618454",
+  "title": "Comparing grounded theory and topic modeling: Extreme divergence or unlikely convergence?",
+  "source": "pdf",
+  "evidence_pages": [
+   9,
+   10
+  ],
+  "method_note": "LDA (Blei et al. 2003) estimated by Gibbs sampling, K=10; each survey answer treated as a document; run independently of a parallel grounded-theory analysis by different authors",
+  "flags": "paper's purpose is comparing grounded theory with topic modeling, so labeling/interpretation is the object of study",
+  "confidence": "high"
+ },
+ {
+  "idx": 76,
+  "work_id": "W2913100704",
+  "title": "Topic models meet discourse analysis: a quantitative tool for a qualitative approach",
+  "source": "pdf",
+  "evidence_pages": [
+   13,
+   14,
+   18
+  ],
+  "method_note": "LDA in MALLET with hyperparameter optimization; two illustrative case studies — 11,744 EP plenary speeches on trade policy 1999-2016 (Talk of Europe) and Austrian newspaper articles on economic growth 2006-2016",
+  "flags": "two separate corpora / models in one methods paper; the paper's subject is how analysts interpret and label topics",
+  "confidence": "high"
+ },
+ {
+  "idx": 77,
+  "work_id": "W4294408742",
+  "title": "Trends and gaps in biodiversity and ecosystem services research: A text mining approach",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4,
+   5
+  ],
+  "method_note": "LDA via R package topicmodels; k=9 chosen by requiring near-exclusive gamma assignment",
+  "flags": "method was 'missing', now filled as lda; quote is thin and indirect - the paper never states a naming step, but describes the topic names as the 'titular words' of each topic's top-beta word list; the beta symbol prints as 'b' in the PDF text layer",
+  "confidence": "low",
+  "pass": 2,
+  "audit": "quote reverted: beta-distribution finding; also the only verbatim defect"
+ },
+ {
+  "idx": 78,
+  "work_id": "W2415048865",
+  "title": "Inferring Multi-Dimensional Ideal Points for US Supreme Court Justices",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4,
+   5,
+   7
+  ],
+  "method_note": "primary model is SCIPM, a novel LDA-family joint generative model of opinions and votes; standard LDA is fitted to learn topics in the supervised setting, and the Author-Topic model (Rosen-Zvi et al. 2004) is fitted as a baseline",
+  "flags": "choice of primary model arguable (novel SCIPM vs LDA/ATM baselines); quote not requested but paper does state 'The labels of issues are given manually based on the top words of each issues.'",
+  "confidence": "medium"
+ },
+ {
+  "idx": 79,
+  "work_id": "W4383737232",
+  "title": "Sexual violence in the discourse of digital citizens: Strengthening the concept of digital citizenship as onli",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 81,
+  "work_id": "W3094221957",
+  "title": "Public Perception of the COVID-19 Pandemic on Twitter: Sentiment Analysis and Topic Modeling Study",
+  "source": "pdf",
+  "evidence_pages": [
+   10,
+   11,
+   12
+  ],
+  "method_note": "LDA; k=6 chosen by highest topic coherence",
+  "flags": "a second, thinner statement on p.12 covers the grouping of the 6 topics into 3 themes (\"The qualitative content analysis approach enabled the categorization of these topics into different distinct themes.\")",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 82,
+  "work_id": "W3168771811",
+  "title": "Gender and Representation Bias in GPT-3 Generated Stories",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "LDA on unigrams and bigrams via MALLET, 50 topics, default parameters",
+  "flags": "short ACL workshop paper (8pp, no appendix); Table 1 carries one-word topic labels (life, family, appearance, politics, war, machines) but section 4.1 goes straight from training LDA to the delta-T statistic with no naming step",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 83,
+  "work_id": "W3203818485",
+  "title": "Selection of the Optimal Number of Topics for LDA Topic Model—Taking Patent Policy Analysis as an Example",
+  "source": "pdf",
+  "evidence_pages": [
+   40,
+   41,
+   42
+  ],
+  "method_note": "LDA (Gibbs); also validated on a word-embedding LDA variant; the paper's contribution is a topic-number selection index, not a new topic model",
+  "flags": "thin; labeling described only as refining/summarizing topic contents into expert-derived subclasses (Table 12); 20 experts produced the reference classification",
+  "confidence": "medium",
+  "pass": 2,
+  "audit": "quote reverted: expert taxonomy built to score topic-NUMBER selection"
+ },
+ {
+  "idx": 84,
+  "work_id": "W3178509963",
+  "title": "Mapping the jungle: A bibliometric analysis of research into construal level theory",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   9,
+   10
+  ],
+  "method_note": "LDA run 100 times and the repeated solutions clustered with k-medoids (Mantyla et al. approach); method not re-coded (not flagged)",
+  "flags": "topic clusters are never labeled at all - they are referred to only as TC 1-TC 18; prose interprets each cluster but no sentence states how the interpretation was arrived at",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 85,
+  "work_id": "W3082160916",
+  "title": "Geographic Differences in Cannabis Conversations on Twitter: Infodemiology Study",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5,
+   6
+  ],
+  "method_note": "LDA via LdaMallet (Java) with the Gensim wrapper; UMass coherence used to pick the model. Confirms method_now=lda",
+  "flags": "themes named in Tables 2-3 but no sentence on how names were derived; nearest text is a topic-validation step (word/topic intrusion), which is validation not labeling",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 86,
+  "work_id": "W3035307130",
+  "title": "Fitspiration on Instagram: Identifying Topic Clusters in User Comments to Posts with Objectification Features",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   8,
+   9
+  ],
+  "method_note": "LDA fitted with the Python lda/Gensim packages; 3-topic solution chosen",
+  "flags": "no sentence describes how the three topic clusters were interpreted/named (Table 3 lists interpretations only)",
+  "confidence": "high"
+ },
+ {
+  "idx": 87,
+  "work_id": "W2165437895",
+  "title": "Multimodal Spatio-Temporal Theme Modeling for Landmark Analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   4,
+   5,
+   8
+  ],
+  "method_note": "primary model is mmSTTM, a novel multimodal spatio-temporal probabilistic topic model; PLSA and the Travelogue model are fitted as baselines, plus a text-only mmSTTM variant",
+  "flags": "novel model, no standard family; PLSA baseline could arguably be coded lsa",
+  "confidence": "medium"
+ },
+ {
+  "idx": 88,
+  "work_id": "W3124273757",
+  "title": "Explaining landscape preference heterogeneity using machine learning-based survey analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 89,
+  "work_id": "W4293458150",
+  "title": "When Do Men MPs Claim to Represent Women in Plenary Debates—Time-Series Cross-Sectional Evidence from the Germ",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   7,
+   12
+  ],
+  "method_note": "structural topic model via the R stm package, 14 topics estimated, six analysed; method not re-coded (not flagged)",
+  "flags": "Table 1 column is headed 'Topic description' and the six topics are named in prose, but no sentence anywhere (incl. notes and the listed online-appendix pointers) states how the descriptions were derived",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 90,
+  "work_id": "W3198362286",
+  "title": "What are the Latent Topics Associated with Experience in Flipped Learning? An Empirical Investigation of Unive",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   6
+  ],
+  "method_note": "",
+  "flags": "topics are named in the results text (e.g. \"The sixth topic was labeled as 'Student growth (2)'\") but no sentence describes the labeling procedure",
+  "confidence": "high"
+ },
+ {
+  "idx": 91,
+  "work_id": "W4394595634",
+  "title": "Literature Review of Extended Reality Research in Consumer Experience: Insight From Semantic Network Analysis ",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   4,
+   5
+  ],
+  "method_note": "LDA combined with semantic network analysis (NetMiner) in a bibliometric literature review",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 92,
+  "work_id": "W4412406168",
+  "title": "Exploring sentiments and topics in Extended Reality learning environments: A comparative study",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "LDA (R topicmodels); number of topics by elbow method, perplexity/coherence for model choice. Task listed method as missing; the PDF states LDA explicitly",
+  "flags": "labels validated by two external evaluators with a kappa agreement check",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 93,
+  "work_id": "W2112143630",
+  "title": "AR-miner: mining informative reviews for developers from mobile app marketplace",
+  "source": "pdf",
+  "evidence_pages": [
+   7
+  ],
+  "method_note": "LDA and ASUM (Aspect and Sentiment Unification Model) compared as the grouping component of AR-Miner; method not re-coded (not flagged)",
+  "flags": "llm_or_software_labels; labels are generated automatically by the AR-Miner pipeline from top-probability words, not assigned by human readers",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 94,
+  "work_id": "W3014172561",
+  "title": "Topic modelling for theme park online reviews: analysis of Disneyland",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 95,
+  "work_id": "W3089771120",
+  "title": "Social media, interaction information and stock market efficiency: evidence from the Shenzhen stock exchange e",
+  "source": "pdf",
+  "evidence_pages": [
+   8,
+   9
+  ],
+  "method_note": "LDA, six topics by try-and-error, one dropped for collinearity; method not re-coded (not flagged)",
+  "flags": "corpus reworded: previous phrase named the platform but not the text unit; no labeling-process sentence - closest text only points at Table 3 and explains the keyword column",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 96,
+  "work_id": "W4379514280",
+  "title": "What Is “Rural Feminism”? A Computer-Assisted Analysis of Popular Antifeminist Discourses in Chinese Social Me",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5
+  ],
+  "method_note": "LDA via the R topicmodels package, k=5 chosen from 2-10; combined with corpus-assisted discourse studies (concordance and collocation)",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 97,
+  "work_id": "W4223433000",
+  "title": "Accountability or Equity: Combining Topic Models and Qualitative Analysis to Examine Public Rhetoric about Per",
+  "source": "pdf",
+  "evidence_pages": [
+   9,
+   10
+  ],
+  "method_note": "LDA estimated with Gensim; five-topic model chosen from candidates of 3-10 topics on interpretability. Confirms method_now=lda",
+  "flags": "thin; quote is from the Table 2 note. Interpretation of each topic from HP/FrEx top words is shown in the Findings prose but not described as a procedure",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 98,
+  "work_id": "W3170484822",
+  "title": "Helping Students FIG-ure It Out: A Large-Scale Study of Freshmen Interest Groups and Student Success",
+  "source": "pdf",
+  "evidence_pages": [
+   7,
+   12,
+   13
+  ],
+  "method_note": "LDA (k=5, chosen by perplexity and topic distinctness) used only to seed a codebook for manual qualitative coding; main study is propensity score matching",
+  "flags": "topic model is auxiliary to the main causal analysis",
+  "confidence": "high"
+ },
+ {
+  "idx": 99,
+  "work_id": "W2052760504",
+  "title": "Retrieving and analyzing mobile apps feature requests from online reviews",
+  "source": "pdf",
+  "evidence_pages": [
+   3
+  ],
+  "method_note": "LDA over extracted feature-request sentences; method not re-coded (not flagged)",
+  "flags": "very thin; the only statement bearing on labels is that topics are 'described by a set of keywords' - in practice each topic is referred to by its single highest-probability keyword (game, use, update, app...) with no stated procedure",
+  "confidence": "low",
+  "pass": 2,
+  "audit": "quote reverted: model setup only (docs/topics definition)"
+ },
+ {
+  "idx": 102,
+  "work_id": "W3082424964",
+  "title": "Sato",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   6,
+   10
+  ],
+  "method_note": "pre-trained gensim LDA with 400 topics over table values (each table a document), used as a table-intent feature inside a neural + CRF semantic type detector",
+  "flags": "topic model is a component of an ML system, not a substantive topic analysis; p10 does contain an interpretation sentence (\"we manually devise an interpretation for each topic\") if a quote is ever needed",
+  "confidence": "high"
+ },
+ {
+  "idx": 104,
+  "work_id": "W3178108216",
+  "title": "Who is leading China's family planning policy discourse in Weibo? A social media text mining analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   1,
+   6,
+   13
+  ],
+  "method_note": "LDA on 74,233 Weibo comments (>4 million words) over six years of People's Daily posts, yielding four topic sets",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 105,
+  "work_id": "W2226292825",
+  "title": "Discourses and Disciplines in the Enlightenment: Topic Modeling the French Encyclopédie",
+  "source": "pdf",
+  "evidence_pages": [
+   1,
+   2
+  ],
+  "method_note": "LDA over the ARTFL digital edition of the Encyclopédie (~75,000 articles), used as a discourse-analysis tool alongside the editors' own classification scheme",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 106,
+  "work_id": "W2884606492",
+  "title": "Description and characterization of place properties using topic modeling on georeferenced tags",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   3,
+   4
+  ],
+  "method_note": "LDA with 40 topics over documents formed from all tags in 500 m grid cells (954 unique tags, ~300,000 images, >7000 users)",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 107,
+  "work_id": "W2900508128",
+  "title": "Citizen visions for European futures—methodological considerations and implications",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "LDA via the MALLET toolkit, four topics, on 298 citizen visions from the Civisti, Casi and Cimulact projects",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 108,
+  "work_id": "W3134160549",
+  "title": "#ChinaMustexplain: Global Tweets, COVID-19, and Anti-Black Racism in China",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   7,
+   9
+  ],
+  "method_note": "LDA on 1,908 de-duplicated tweets collected via the Twitter API using hashtags such as #RacismInChina and #AfricansInChina",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 109,
+  "work_id": "W2135790056",
+  "title": "Collaborative topic modeling for recommending scientific articles",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   7,
+   8
+  ],
+  "method_note": "LDA is the text component inside the authors' collaborative topic regression (CTR); method not re-coded (not flagged)",
+  "flags": "topics are shown only as top-word lists (Table 1) and given ad hoc names in prose/figure captions ('a topic about “Bayesian statistics”'); no sentence states how those names were arrived at",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 110,
+  "work_id": "W2223092947",
+  "title": "stm : An R Package for Structural Topic Models",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   8,
+   9
+  ],
+  "method_note": "software paper for the stm R package; running example fits a 20-topic STM to the CMU 2008 Political Blog Corpus with blog ideology and day as prevalence covariates",
+  "flags": "methodological/software paper; corpus is an illustrative running example",
+  "confidence": "high"
+ },
+ {
+  "idx": 111,
+  "work_id": "W4327734520",
+  "title": "Exploring thematic influences on theme park visitors' satisfaction: An empirical study on Disneyland China",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   6,
+   7
+  ],
+  "method_note": "STM with 20 topics on 70,829 valid Meituan reviews scraped with Python; topics grouped into three categories (service, theme, general discussion)",
+  "flags": "abstract says 112,000 reviews of Shanghai Disney Resort while the methods section reports 70,829 valid reviews after cleaning",
+  "confidence": "high"
+ },
+ {
+  "idx": 112,
+  "work_id": "W3025078473",
+  "title": "On How Crowdsourced Data and Landscape Organisation Metrics Can Facilitate the Mapping of Cultural Ecosystem S",
+  "source": "pdf",
+  "evidence_pages": [
+   1,
+   3
+  ],
+  "method_note": "LDA (three topics) in the Orange data mining software applied to Clarifai image-recognition tags of 21,242 outdoor photographs (9,983 retained), used to filter and classify cultural ecosystem service types",
+  "flags": "topic model applied to auto-generated image tags rather than natural-language documents",
+  "confidence": "high"
+ },
+ {
+  "idx": 113,
+  "work_id": "W3096451393",
+  "title": "Twitter Discussions and Emotions About the COVID-19 Pandemic: Machine Learning Approach",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4,
+   8
+  ],
+  "method_note": "LDA on 4,196,020 tweets; 13 topics then grouped into 5 themes by Braun and Clarke thematic analysis. Confirms method_now=lda",
+  "flags": "detailed multi-coder process: two members coded independently in NVivo, two others reviewed and collapsed codes into themes",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 114,
+  "work_id": "W3171261489",
+  "title": "COVID-19 Vaccine–Related Discussion on Twitter: Topic Modeling and Sentiment Analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "LDA via R textmineR 3.0.4, 16 topics chosen by coherence score. Confirms method_now=lda",
+  "flags": "llm_or_software_labels; textmineR generated initial labels which two authors then refined, with a third author resolving disagreements",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 115,
+  "work_id": "W3194604497",
+  "title": "Public sentiment analysis and topic modeling regarding COVID-19 vaccines on the Reddit social media platform: ",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   7
+  ],
+  "method_note": "Gensim LDAModel; monthly and by-polarity LDA models",
+  "flags": "thin quote; paper assigns no topic labels (topics are numbered keyword lists), quote is the only statement of qualitative inspection of topics and sits in the topic-count/coherence paragraph",
+  "confidence": "low",
+  "pass": 2,
+  "audit": "quote reverted: coherence check = model validation, not labeling"
+ },
+ {
+  "idx": 116,
+  "work_id": "W2581789519",
+  "title": "What Are People Tweeting About Zika? An Exploratory Study Concerning Its Symptoms, Treatment, Transmission, an",
+  "source": "pdf",
+  "evidence_pages": [
+   8,
+   13
+  ],
+  "method_note": "LDA fitted separately within each of the 4 classified disease-characteristic categories; number of topics set by perplexity",
+  "flags": "quote is generic/thin; acknowledgements also thank a domain expert 'for her help with interpreting the topic models' (p13); topic names appear only in Tables 4-5",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 117,
+  "work_id": "W2754000910",
+  "title": "Enhancing Seasonal Influenza Surveillance: Topic Analysis of Widely Used Medicinal Drugs Using Twitter Data",
+  "source": "pdf",
+  "evidence_pages": [
+   7,
+   8
+  ],
+  "method_note": "LDA implemented in MALLET, fitted separately per drug on relevant drug-uptake tweets",
+  "flags": "thin quote; the two adjacent sentences straddle the p7/p8 page break; methods section gives no explicit labeling procedure, Table 4 caption notes 'only interpretable topic compositions are listed'",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 118,
+  "work_id": "W3204815115",
+  "title": "Examining the Utility of Social Media in COVID-19 Vaccination: Unsupervised Learning of 672,133 Twitter Posts",
+  "source": "pdf",
+  "evidence_pages": [
+   3
+  ],
+  "method_note": "stm package in R with three covariates (continent, date, follower count); K chosen by Lee and Mimno algorithm",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 119,
+  "work_id": "W3122020779",
+  "title": "Understanding the Public Discussion About the Centers for Disease Control and Prevention During the COVID-19 P",
+  "source": "pdf",
+  "evidence_pages": [
+   3
+  ],
+  "method_note": "LDA via R textmineR 3.0.4; K=16 chosen by coherence score",
+  "flags": "llm_or_software_labels (textmineR topic label function produced initial labels, refined by the two authors)",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 120,
+  "work_id": "W4310700278",
+  "title": "Public Trust in Artificial Intelligence Applications in Mental Health Care: Topic Modeling Analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   6
+  ],
+  "method_note": "LDA (Python) with pyLDAvis; 4 topics chosen by coherence, grouped into 3 themes by intertopic distance",
+  "flags": "supporting statement on p6: 'In this way, we could study the content of this topic and name it.'",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 121,
+  "work_id": "W4295094782",
+  "title": "Examining the Prevailing Negative Sentiments Related to COVID-19 Vaccination: Unsupervised Deep Learning of Tw",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   3
+  ],
+  "method_note": "method was 'missing'; PDF p2 states 'Topic modelling, specifically BERTopic [13], was employed' (BERT/SieBERT used upstream for user and sentiment filtering)",
+  "flags": "corpus narrowed: BERTopic was fitted only to the tweets retained after SieBERT selected negative-sentiment tweets",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 122,
+  "work_id": "W3204884633",
+  "title": "COVID-19 Vaccine Hesitancy in the Month Following the Start of the Vaccination Process",
+  "source": "pdf",
+  "evidence_pages": [
+   26,
+   27
+  ],
+  "method_note": "LDA via gensim with spaCy lemmatization, fitted on the cleaned set of tweets classified 'against' vaccination",
+  "flags": "thin quote - labels in Table 16 are the nine discussion topics previously derived from hashtag analysis, mapped onto LDA topics; corpus fixed: no UK restriction (tweets are English-language worldwide, 8 Dec 2020-7 Jan 2021) and LDA used only the 'against' tweets",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 123,
+  "work_id": "W4321209194",
+  "title": "Exploring changes in guest preferences for Airbnb accommodation with different levels of sharing and prices: U",
+  "source": "pdf",
+  "evidence_pages": [
+   6
+  ],
+  "method_note": "STM (Roberts et al.) with covariates listing type and average price; 21 topics, 133,166 review documents",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 124,
+  "work_id": "W4205696320",
+  "title": "Telehealth Before and During the COVID-19 Pandemic: Analysis of Health Care Workers' Opinions",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5,
+   6
+  ],
+  "method_note": "stm R package, 13 topics, spectral initialization, metadata covariates (residence, occupation, pre/post pandemic, sentiment)",
+  "flags": "quote missing after full-text search; single-author paper, methods stop at model fitting",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 125,
+  "work_id": "W3033652681",
+  "title": "Understanding Weight Loss via Online Discussions: Content Analysis of Reddit Posts Using Topic Modeling and Wo",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "method was 'missing'; p3 states LDA implemented in Mallet 2.0.8, K=25 by coherence; word2vec + hierarchical clustering is a separate, non-topic-model analysis",
+  "flags": "quote is brief; the adjacent sentence 'The identifier of each topic was named based on the descending order of their topic distribution' concerns topic IDs, not labels",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 126,
+  "work_id": "W2983908879",
+  "title": "Economic evaluation studies in the field of HIV/AIDS: bibliometric analysis on research development and scopes",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "LDA run in STATA 14 as one component of a bibliometric study",
+  "flags": "named the unit (titles/abstracts) the model was actually fitted to",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 127,
+  "work_id": "W4409866522",
+  "title": "A computational grounded theory based analysis of research on China’s old-age social welfare system",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   6
+  ],
+  "method_note": "LDA via Gensim 4.3.0 in Python, framed as computational grounded theory",
+  "flags": "",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 128,
+  "work_id": "W4401974636",
+  "title": "Talk of Family: How Institutional Overlap Shapes Family-Related Discourse Across Social Class",
+  "source": "pdf",
+  "evidence_pages": [
+   7
+  ],
+  "method_note": "discourse atom topic modeling (DATM): word embedding plus sparse dictionary learning over atom vectors; outside the controlled vocabulary",
+  "flags": "soft hyphens in the PDF text normalized to plain hyphens in the quote",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 129,
+  "work_id": "W4390841497",
+  "title": "The design methods meshwork: Activating the Design Methods Group Newsletter through digital history",
+  "source": "pdf",
+  "evidence_pages": [
+   8,
+   10,
+   11
+  ],
+  "method_note": "method_now was 'missing'; the paper fits LDA via the Gale Digital Scholar Lab topic modeling tool, an API-based implementation of MALLET",
+  "flags": "thin; the paper assigns no topic labels at all (Table 1 reports topic_0..topic_11 with terms only), so the quote describes how a topic was interpreted rather than how labels were produced; nearby generic exposition ('Naming and characterizing topics is an interpretive process in its own right, up to the researchers') was excluded as textbook exposition",
+  "confidence": "low",
+  "pass": 2
+ },
+ {
+  "idx": 130,
+  "work_id": "W4361018799",
+  "title": "Potential Impact of the COVID-19 Pandemic on Public Perception of Water Pipes on Reddit: Observational Study",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4,
+   5
+  ],
+  "method_note": "LDA on pre- and during-pandemic post sets separately; NLTK/spaCy preprocessing, K chosen by max coherence",
+  "flags": "searched label/name/interpret/assign/title/describe/theme/manual/review/consensus/categor across all 10 pages; Tables 1-2 carry full topic labels but no sentence says how they were produced; closest near-misses are generic LDA exposition ('The algorithm first calculates the probabilities of each word appearing in each topic and then defines each topic with the words that have the highest possibility of appearing in that topic.') and a pointer sentence ('The keywords and associated example Reddit posts are also included in both Tables 1 and 2.')",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 131,
+  "work_id": "W4225080298",
+  "title": "#facebookdown: Time to panic or detox? Understanding users’ reactions to social media outage",
+  "source": "pdf",
+  "evidence_pages": [
+   2
+  ],
+  "method_note": "LDA with Gibbs sampling via the topicmodels package in R; 10-topic model selected on statistical fit and interpretability",
+  "flags": "PDF text layer drops fi/ff ligatures elsewhere on the page, but not within the quoted sentence",
+  "confidence": "high"
+ },
+ {
+  "idx": 132,
+  "work_id": "W4405898903",
+  "title": "A topic modeling approach for analyzing and categorizing electronic healthcare documents in Afaan Oromo withou",
+  "source": "pdf",
+  "evidence_pages": [
+   4,
+   5,
+   8
+  ],
+  "method_note": "LDA via gensim, 10 topics, top 10 words per topic; labels assigned manually then used to build a labeled classification set",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 133,
+  "work_id": "W1516873729",
+  "title": "Appropriators not Position Takers: The Distorting Effects of Electoral Incentives on Congressional Representat",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   6
+  ],
+  "method_note": "64,033 press releases, 44 topics; Grimmer's own Bayesian hierarchical 'expressed agenda' mixture model, not off-the-shelf LDA/STM (hence method 'other')",
+  "flags": "scanned/OCR PDF with interleaved two-column text; quote reassembled across OCR column bleed but wording verified",
+  "confidence": "high"
+ },
+ {
+  "idx": 134,
+  "work_id": "W4400984650",
+  "title": "Can Human Reading Validate a Topic Model?",
+  "source": "pdf",
+  "evidence_pages": [
+   12,
+   13
+  ],
+  "method_note": "confirmed LDA (the replication runs the LDA topic model 200 times on the FBS corpus); left null because newly_added and need_method are both false",
+  "flags": "replication/methods paper: it does not label topics itself but inherits FBS (2017)'s labels, so the quote describes FBS's labeling process as this paper's source of labels",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 135,
+  "work_id": "W2769563773",
+  "title": "Computational Grounded Theory: A Methodological Framework",
+  "source": "pdf",
+  "evidence_pages": [
+   18,
+   21,
+   22
+  ],
+  "method_note": "STM; ran 20/30/40/50-topic models and used the 40-topic solution; quote is from the Table 2 note",
+  "flags": "methods-framework article; the topic model is a worked illustration of computational grounded theory rather than the paper's substantive subject",
+  "confidence": "high"
+ },
+ {
+  "idx": 136,
+  "work_id": "W2179362017",
+  "title": "Corporate funding and ideological polarization about climate change",
+  "source": "pdf",
+  "evidence_pages": [
+   3
+  ],
+  "method_note": "confirmed STM (structural topic model) on the full corpus; left null because newly_added and need_method are both false",
+  "flags": "thin and passive; taken under the loosened rule as the only statement about how the authors interpreted the model output (Fig. 2 carries labels such as 'Skeptical of IPCC Science' but the caption only announces them); estimation/validation detail is deferred to an SI Appendix not present in the local PDF",
+  "confidence": "low",
+  "pass": 2,
+  "audit": "quote reverted: topic-count choice + pointer to an appendix"
+ },
+ {
+  "idx": 137,
+  "work_id": "W2580318018",
+  "title": "Discovering themes and trends in transportation research using topic modeling",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   7
+  ],
+  "method_note": "LDA via MALLET collapsed Gibbs, K=50, alpha=0.1, 17,163 abstracts",
+  "flags": "labeling described only thinly ('intuitively' from top words); no coders, no representative-document reading",
+  "confidence": "medium"
+ },
+ {
+  "idx": 138,
+  "work_id": "W3083628402",
+  "title": "Exploring Eating Disorder Topics on Twitter: Machine Learning Approach",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   5,
+   7
+  ],
+  "method_note": "topic model is Correlation Explanation (CorEx), not LDA/STM - hence 'other'; run separately on three tweet groups (70/80-topic solutions), themes merged into higher-level categories by a single domain expert (AH)",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 139,
+  "work_id": "W4283460584",
+  "title": "Note: Studying Sustainable Practices of Appalachian Trail Community based on Reddit Topic Modelling Analysis",
+  "source": "pdf",
+  "evidence_pages": [
+   2
+  ],
+  "method_note": "LDA via gensim, k=7 chosen by coherence, run separately on pre-COVID and during-COVID comment corpora; p.2 also states 'We then labeled the topics manually based on the concept of descriptors.'",
+  "flags": "4-page short note",
+  "confidence": "high"
+ },
+ {
+  "idx": 140,
+  "work_id": "W3041699688",
+  "title": "Public discourse and sentiment during the COVID 19 pandemic: Using Latent Dirichlet Allocation for topic model",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   3,
+   5
+  ],
+  "method_note": "LDA on ~4M hashtag-filtered COVID-19 tweets, 11 salient topics grouped into 10 themes; also runs sentiment analysis",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 141,
+  "work_id": "W4324086340",
+  "title": "Social welfare in the light of topic modelling",
+  "source": "pdf",
+  "evidence_pages": [
+   5,
+   6,
+   14
+  ],
+  "method_note": "confirmed LDA, plus a secondary 'LDA within LDA' pass for micro-topics; left null because newly_added and need_method are both false",
+  "flags": "searched label/name/interpret/assign/title/describe/top terms/denote/refer to/capture/coherence/manual across all 15 pages including the appendix; the 12 labels appear in Figure 2 and Table A1 with no statement of how they were produced; closest near-misses are the pointer caption 'FIGURE 2 Labels for 12 main topics with top associated words/tokens.' and the results opener 'Twelve main topics were generated from the cleaned database with a list of the most frequent words (Figure 2).'",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 142,
+  "work_id": "W2166354010",
+  "title": "Studying the history of ideas using topic models",
+  "source": "pdf",
+  "evidence_pages": [
+   3
+  ],
+  "method_note": "confirmed LDA (collapsed Gibbs sampling), re-run with hand-selected seed words as priors, i.e. a seeded-LDA variant; left null because newly_added and need_method are both false",
+  "flags": "thin: says only that the labels were 'hand-assigned', with no account of what was inspected; qualifies under the loosened rule as a clause inside a longer sentence",
+  "confidence": "medium",
+  "pass": 2
+ },
+ {
+  "idx": 143,
+  "work_id": "W4396832016",
+  "title": "Support in Short Form: Investigating TikTok Comments on Videos with #Harassment",
+  "source": "pdf",
+  "evidence_pages": [
+   2,
+   3
+  ],
+  "method_note": "'topic modeling' here is DistilBERT sentence embeddings (with a per-video positional bias) clustered by K-Means, k=9 chosen by the Elbow method - hence 'other', not BERTopic",
+  "flags": "method is BERT+K-Means, arguably close to BERTopic but not that package; 145,515 comments from 744 videos",
+  "confidence": "high"
+ },
+ {
+  "idx": 144,
+  "work_id": "W4387309009",
+  "title": "Talking Past Each Other on Twitter: Thematic, Event, and Temporal Divergences in Polarized Partisan Expression",
+  "source": "pdf",
+  "evidence_pages": [
+   9,
+   10,
+   11,
+   12
+  ],
+  "method_note": "LDA on 762,998 unique immigration tweets from a 1% Twitter stream sample; topics then grouped into broader thematic emphases and given ideological leanings, validated by two authors coding 400 tweets",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 145,
+  "work_id": "W2169325768",
+  "title": "Topic Modeling of Research Fields: An Interdisciplinary Perspective",
+  "source": "pdf",
+  "evidence_pages": [
+   3,
+   4
+  ],
+  "method_note": "confirmed LDA (run separately per field, plus a second LDA pass on the language-related Education subset); the paper's main contribution is a Naive Bayes + Wikipedia classifier; left null because newly_added and need_method are both false",
+  "flags": "searched label/name/interpret/assign/title/describe/manual/hand across all 6 pages; Table 3 gives topic names with keywords and no process sentence; closest near-misses are 'we ran LDA to induce 100 topics on the text of the papers and saved 72 topics that were relevant. A sample of these topics is shown in Table 3.' (topic selection plus a pointer) and the Table 3 caption 'Slice of topics and their top keywords in Linguistics, Computational Linguistics, and Education.'; the paper's many 'we labeled' sentences all concern annotating papers as training data for the supervised classifier, which the rule excludes",
+  "confidence": "high",
+  "pass": 2
+ },
+ {
+  "idx": 146,
+  "work_id": "W2768320505",
+  "title": "Using Radical Environmentalist Texts to Uncover Network Structure and Network Features",
+  "source": "pdf",
+  "evidence_pages": [
+   9,
+   13,
+   27,
+   30
+  ],
+  "method_note": "STM, 15 topics, on 3,210 twelve-sentence documents from the 10 issues of Do or Die; labels drawn from the 20 most frequent-and-exclusive (FREX) words plus 10 representative documents per topic",
+  "flags": "",
+  "confidence": "high"
+ },
+ {
+  "idx": 147,
+  "work_id": "W4411193905",
+  "title": "“Paper, practice, ancestry, culture”: Racial frames and contested racial/ethnic census categories",
+  "source": "pdf",
+  "evidence_pages": [
+   6,
+   7
+  ],
+  "method_note": "STM on 20,255 OMB public comments (de-duplicated for fitting, projected onto 20,244 docs); 55-topic solution, 43 topics retained and treated as 'frames'; computational grounded theory approach",
+  "flags": "",
+  "confidence": "high"
+ }
+]

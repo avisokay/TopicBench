@@ -8,6 +8,101 @@ Given: keyword clusters and topic labels (separate labels for each the original 
 3. evaluate against human-human comparison
 4. score each model on each paper
 
+## Dataset
+
+The benchmark corpus lives in `data/`. It was built by stratified harvest from OpenAlex
+across 19 social-science discipline strata, screened for papers that actually *run* a
+classical topic model on a substantive research question, then extracted from full text.
+See [`data/topicbench_process.html`](data/topicbench_process.html) for the full pipeline,
+yields, and validation.
+
+| file | rows | unit | use |
+|---|---|---|---|
+| `data/topicbench_topics.csv` | 2,290 | one **topic** | **benchmarking** — drop-in for the usage example below |
+| `data/topicbench_bibliography.csv` | 178 | one **paper** | provenance, citation, per-paper metadata |
+| `data/topicbench_process.html` | — | — | how the corpus was built, with a codebook for every variable |
+| `data/PREPROCESSING.md` | — | — | every cleaning rule with its measured prevalence |
+| `data/data_dashboard.html` | — | — | interactive explorer — open in a browser |
+| `data/corpus_coverage.png` | — | — | coverage and label-rate figure |
+| `data/data_cleaned.csv` | 24 | one paper | original pilot set |
+
+### Source records
+
+Kept because the report's numbers are reproducible only from them, not because they are
+inputs to normal use:
+
+| file | what it is |
+|---|---|
+| `data/EXTRACTION_PROMPT.md` | the prompt governing the vision extraction pass |
+| `data/topicbench_vision_extractions.jsonl` | raw vision output, including the papers that yielded **no** table — the only record of why each failed, and the basis for the reporting-practice analysis |
+| `data/vision_extraction_manifest_ext.csv` | which papers were attempted; fixes the denominators |
+| `data/topicbench_pairs.csv` | raw per-topic output of the local extraction pass, incl. per-row provenance flags |
+| `data/fill_provenance.json`, `data/pass2_corrections.json` | provenance and corrections for the `corpus` / `method` columns |
+
+
+### Exploring the corpus
+
+`data/data_dashboard.html` is a self-contained explorer: filter by discipline, tier,
+extraction route, year and quality flag, browse every keyword→label pair, and inspect
+distributions and per-paper provenance. Open it directly — no server, no network, no
+build step.
+
+It embeds a frozen snapshot of the CSVs rather than reading them at view time, so
+regenerate it after any change to the corpus:
+
+```bash
+python scripts/build_dashboard.py
+```
+
+Standard library only — it does not need the packages in `pyproject.toml`. Run
+`--help` for explicit `--topics` / `--bibliography` / `--out` paths.
+
+`topicbench_topics.csv` is the analysis unit: each row is one keyword cluster paired with
+the label its own authors gave it. Columns `field`, `keywords`, `author_label` match the
+signature the pipeline below expects.
+
+### Filtering before you benchmark
+
+Every row carries an `eval_tier` and a `flags` string; nothing is dropped, so you set the
+threshold:
+
+| tier | n | meaning |
+|---|---|---|
+| `strict` | 1,807 | clean, English, no contamination — **headline analysis** |
+| `core` | 388 | adds trivially-easy labels and abstract-leakage cases |
+| `sensitivity` | 55 | non-English or sentence-like labels |
+| `excluded` | 40 | degenerate — no usable label |
+
+```python
+df = pd.read_csv('data/topicbench_topics.csv')
+df = df[df.eval_tier == 'strict']            # headline; use 'core' for robustness
+df['keywords'] = df.keywords.apply(json.loads)
+```
+
+Three cautions that affect inference:
+
+1. **Cluster standard errors by `work_id`.** Topics within a paper share a corpus and one
+   labeler's habits, so 1,825 topics are not 1,825 independent observations — they come
+   from 130 papers.
+2. **Exclude `extraction_source == "vision_local"` for any prevalence claim.** Those 17
+   papers were hand-picked *because* they publish topic tables (17/17 carry labels), which
+   is selection on the outcome. They are valid benchmark items but must not enter an
+   estimate of how often social scientists label topics.
+3. **Fix the number of keywords shown.** `n_keywords` ranges 2–47 (median 10). Left
+   unfixed, prompt difficulty varies by paper.
+
+### Known corpus properties
+
+- Author labels are short: median 2 words, 76% are 1–3 words. Exact match is too strict a
+  metric; embedding similarity plus a human-adjudicated subsample is the defensible pairing.
+- **Prompt asymmetry.** Authors saw top terms *plus* representative documents, their
+  research question, and domain expertise. A keyword-only prompt is a harder task than the
+  one the humans performed — state it as the design or supply matched context.
+- Of 396 papers with full text, only 160 (40%) published an author-labeled topic table.
+  In the stratified sample, CS-adjacent fields label at 18% versus 39% elsewhere
+  (Fisher OR 0.34, p = 0.015), so the ground truth skews toward interpretive traditions.
+  Report per-discipline performance rather than a single pooled score.
+
 ## How to install the package
 To install TopicBench, you need Python 3.9 or higher. Since this package is currently in development, we recommend installing it in "editable" mode.
 
@@ -45,8 +140,12 @@ from topicbench.validate import score_similarity, compute_alignment
 
 ### Step 2: Load Your Dataset
 ```python
-# Load a dataset with keyword clusters
-df = pd.read_csv('data/data_cleaned.csv')
+import json
+
+# Load the benchmark corpus (one row per topic)
+df = pd.read_csv('data/topicbench_topics.csv')
+df = df[df.eval_tier == 'strict']              # see "Filtering" above
+df['keywords'] = df.keywords.apply(json.loads)
 
 # Required columns: 'field', 'keywords', 'author_label'
 # Optional: 'alt_human' for human baseline comparison

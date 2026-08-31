@@ -1,0 +1,183 @@
+[
+ {
+  "idx": 126,
+  "work_id": "W2983908879",
+  "corpus_was": "HIV/AIDS economic evaluation papers 1990–2017",
+  "corpus_now": "HIV/AIDS economic evaluation paper titles and abstracts 1990–2017",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 136,
+  "work_id": "W2179362017",
+  "reverted_quote": "It is important to note that while these are automated computational methods, they require a deep human understanding of the corpus that guides the number of topics that are estimated, and a process of recursive interpretation of the model’s results based on prior findings (see SI Appendix for important details about topic model estimation and validation).",
+  "reason": "topic-count choice + pointer to an appendix"
+ },
+ {
+  "idx": 69,
+  "work_id": "W4310197903",
+  "corpus_was": "Weibo posts on Zhengzhou flood July 2021",
+  "corpus_now": "Weibo official media posts and public comments on the 2021 Zhengzhou flood",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 70,
+  "work_id": "W3161849626",
+  "method_was": "other",
+  "method_now": "lda",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 70,
+  "work_id": "W3161849626",
+  "corpus_was": "social media posts about air pollution",
+  "corpus_now": "Dcard forum posts about air pollution, Taiwan",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 71,
+  "work_id": "W4416298317",
+  "reverted_quote": "BERTopic identifies such topics by clustering sentences based on their semantic similarity, then characterizing each cluster through distinctive keywords. These keywords are determined by class‐based term frequency‐inverse document frequency scores (c‐TF‐IDF), meaning they are words frequently found within a particular topic but relatively rare elsewhere.",
+  "reason": "generic BERTopic/c-TF-IDF exposition, not what these authors did"
+ },
+ {
+  "idx": 72,
+  "work_id": "W4407712952",
+  "method_was": "other",
+  "method_now": "bertopic",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 77,
+  "work_id": "W4294408742",
+  "reverted_quote": "In case of three topics (“Research & Policy”, “Urban & Spat. Plan”, “Hydro- & Microbiology”), characteristic words (b values) are evenly distributed. For the remaining topics (“Diversity & Plants”, “Species & Climate change”, “Agriculture”, “Carbon & Soil & Forestry”), the group is characterised by a dominance of the titular words (Fig. 2).",
+  "reason": "beta-distribution finding; also the only verbatim defect"
+ },
+ {
+  "idx": 115,
+  "work_id": "W3194604497",
+  "reverted_quote": "Though coherence values are insightful, topics were qualitatively analyzed to double-check for content coherency rather than numerical.",
+  "reason": "coherence check = model validation, not labeling"
+ },
+ {
+  "idx": 121,
+  "work_id": "W4295094782",
+  "corpus_was": "English tweets on COVID-19 vaccination 2021-2022",
+  "corpus_now": "negative-sentiment English tweets on COVID-19 vaccination 2021-2022",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 122,
+  "work_id": "W3204884633",
+  "corpus_was": "English tweets on COVID-19 vaccination, UK, 2020-2021",
+  "corpus_now": "English anti-vaccination COVID-19 tweets, Dec 2020-Jan 2021",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 4,
+  "work_id": "W2606103268",
+  "method_was": "other",
+  "method_now": "lda",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 11,
+  "work_id": "W3049445821",
+  "method_was": "other",
+  "method_now": "lda",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 11,
+  "work_id": "W3049445821",
+  "corpus_was": "social media-based public health studies, 2000-2018",
+  "corpus_now": "abstracts of social media-based public health studies, 2000-2018",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 15,
+  "work_id": "W4413297844",
+  "corpus_was": "Chinese social media posts, 2023 food safety incident",
+  "corpus_now": "Weibo posts on 2023 “Rat Head and Duck Neck” food safety incident",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 26,
+  "work_id": "W2154608152",
+  "reverted_quote": "Three types of topics were specified in the model, corresponding to individual MISC codes, study (i.e., a topic for each unique intervention study), and a set of background, or general, topics.",
+  "reason": "L-LDA model spec / supervised MISC codes, not label derivation"
+ },
+ {
+  "idx": 28,
+  "work_id": "W4391839376",
+  "corpus_was": "public letters government inquiry platform",
+  "corpus_now": "citizen letters to Hangzhou online government inquiry platform 2022-2023",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 36,
+  "work_id": "W2345106796",
+  "reverted_quote": "In the context of the psychotherapy corpus, possible labels include symptom and content codes and L-LDA model infers a unique topic for each code.",
+  "reason": "supervised annotation codes + generic L-LDA exposition"
+ },
+ {
+  "idx": 38,
+  "work_id": "W4229011615",
+  "corpus_was": "Twitter posts",
+  "corpus_now": "English tweets on COVID-19 and travel (#covidtravel)",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 45,
+  "work_id": "W2771147969",
+  "method_was": "other",
+  "method_now": "stm",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 45,
+  "work_id": "W2771147969",
+  "corpus_was": "MOOC posts on palliative care understanding",
+  "corpus_now": "Understanding Dementia MOOC forum posts on palliative care",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 46,
+  "work_id": "W3206380387",
+  "method_was": "other",
+  "method_now": "lda",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 54,
+  "work_id": "W3212025615",
+  "method_was": "other",
+  "method_now": "lda",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 56,
+  "work_id": "W2940156422",
+  "method_was": "other",
+  "method_now": "lda",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 59,
+  "work_id": "W4401386709",
+  "corpus_was": "online guest reviews of Chinese lifestyle hotels",
+  "corpus_now": "TripAdvisor reviews of Chinese lifestyle hotels",
+  "reason": "previous value guessed from abstract; corrected against the PDF"
+ },
+ {
+  "idx": 83,
+  "work_id": "W3203818485",
+  "reverted_quote": "The topic contents obtained by the three methods were refined, summarized, and divided into 55 subclasses under five major categories.",
+  "reason": "expert taxonomy built to score topic-NUMBER selection"
+ },
+ {
+  "idx": 99,
+  "work_id": "W2052760504",
+  "reverted_quote": "We considered each feature request as being a document and we aimed to identify a set of topics described by a set of keywords which would be associated with the entire corpus of documents.",
+  "reason": "model setup only (docs/topics definition)"
+ }
+]
