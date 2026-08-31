@@ -18,7 +18,14 @@ Nothing here evades a paywall: it only follows links publishers themselves mark
 as open access. Closed items are reported at the end so you can grab them through
 UW's subscriptions.
 """
-import argparse, json, os, re, sys, time, urllib.parse, urllib.request
+import argparse
+import json
+import os
+import re
+import sys
+import time
+import urllib.parse
+import urllib.request
 
 UA = "TopicBench-OA-fetcher/1.0 (mailto:%s)"
 
@@ -41,12 +48,12 @@ def unpaywall(doi, email):
     best = d.get("best_oa_location")
     if best:
         locs.append(best)
-    locs += [l for l in (d.get("oa_locations") or []) if l is not best]
+    locs += [loc for loc in (d.get("oa_locations") or []) if loc is not best]
     out = []
-    for l in locs:
+    for loc in locs:
         for k in ("url_for_pdf", "url"):
-            if l.get(k):
-                out.append(l[k])
+            if loc.get(k):
+                out.append(loc[k])
     return out, d.get("is_oa"), (d.get("journal_name") or "")
 
 
@@ -73,7 +80,8 @@ def main():
     a = ap.parse_args()
 
     here = os.path.dirname(os.path.abspath(__file__))
-    dois = [l.strip() for l in open(os.path.join(here, a.dois)) if l.strip()]
+    with open(os.path.join(here, a.dois)) as fh:
+        dois = [line.strip() for line in fh if line.strip()]
     outdir = os.path.join(here, a.out)
     os.makedirs(outdir, exist_ok=True)
 
@@ -81,7 +89,9 @@ def main():
     for i, doi in enumerate(dois, 1):
         dest = os.path.join(outdir, slug(doi) + ".pdf")
         if os.path.exists(dest) and os.path.getsize(dest) > 20_000:
-            skipped.append(doi); print(f"[{i}/{len(dois)}] have  {doi}"); continue
+            skipped.append(doi)
+            print(f"[{i}/{len(dois)}] have  {doi}")
+            continue
 
         urls, is_oa, journal = [], None, ""
         try:
@@ -96,9 +106,12 @@ def main():
                 blob = get(u, a.email, binary=True)
                 if blob[:5] != b"%PDF-":          # usually an HTML landing page
                     continue
-                open(dest, "wb").write(blob)
+                with open(dest, "wb") as fh:
+                    fh.write(blob)
                 print(f"[{i}/{len(dois)}] OK    {doi}  ({len(blob)//1024} KB)")
-                got.append(doi); ok = True; break
+                got.append(doi)
+                ok = True
+                break
             except Exception:
                 continue
         if not ok:
