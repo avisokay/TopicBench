@@ -21,7 +21,7 @@ def score_similarity(label1: str, label2: str, metric = "cosine"):
 
     Input: Two labels (strings).
     Input: Similarity metric (default: Cosine). 
-    Options: "cosine", "euclidean", "manhattan", "angular", "bleu", "jaccard"
+    Options: "cosine", "euclidean", "manhattan", "angular", "jaccard"
     Output: Similarity score (float).
     '''
 
@@ -45,10 +45,6 @@ def score_similarity(label1: str, label2: str, metric = "cosine"):
         result = calculate_embedding_angular(row, 'label1', 'label2')
         return float(result['Angular_Distance'])
 
-    elif metric.lower() == "bleu":
-        result = calculate_overlap(row, 'label1', 'label2')
-        return float(result['BLEU'])
-
     elif metric.lower() == "jaccard":
         result = calculate_overlap(row, 'label1', 'label2')
         return float(result['Jaccard'])
@@ -57,7 +53,7 @@ def score_similarity(label1: str, label2: str, metric = "cosine"):
         raise ValueError(
             "Unknown metric "
             f"'{metric}'. Choose from: cosine, euclidean, manhattan, "
-            "angular, bleu, jaccard"
+            "angular, jaccard"
         )
 
 

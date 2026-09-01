@@ -30,14 +30,14 @@ df = pd.DataFrame({
 metrics_df = df.apply(calculate_overlap, axis=1, string1='sent1', string2='sent2')
 cosine_df = df.apply(calculate_embedding_cosine, axis=1, string1='sent1', string2='sent2')
 
-def test_BLUE():
+def test_overlap_column_type():
     """
     author: avisokay
     reviewer: hhbayer
     category: (i) Smoke Test
     """
-    # Assert that BLEU column is the correct type
-    assert isinstance(metrics_df['BLEU'], pd.Series)
+    # Assert that Jaccard column is the correct type
+    assert isinstance(metrics_df['Jaccard'], pd.Series)
 
 def test_semantic_similarity():
     """
@@ -88,8 +88,7 @@ def test_overlap():
     )
 
     # Just check that it runs and returns reasonable values
-    assert set(result.index) == {"BLEU", "Jaccard"}
-    assert 0.0 <= result["BLEU"] <= 1.0
+    assert set(result.index) == {"Jaccard"}
     assert 0.0 <= result["Jaccard"] <= 1.0
 
 
@@ -140,16 +139,22 @@ def test_llm_as_judge_pattern_parses_response(monkeypatch):
         def __init__(self, content):
             self.choices = [FakeChoice(content)]
 
-    class FakeResponsesAPI:
+    class FakeCompletionsAPI:
         def create(self, *args, **kwargs):
             # Return a JSON object as the model "output"
             return FakeResponse(
                 '{"similarity": 0.9, "rationale": "Sentences are nearly paraphrases."}'
             )
 
-    class FakeClient:
+    class FakeChatAPI:
         def __init__(self):
-            self.responses = FakeResponsesAPI()
+            self.completions = FakeCompletionsAPI()
+
+    class FakeClient:
+        # Mirrors the shape of client.chat.completions.create(...), which is the
+        # API whose response carries .choices[0].message.content.
+        def __init__(self):
+            self.chat = FakeChatAPI()
 
     # Monkeypatch the helper in src.topicbench.semantic_similarity so that
     # calculate_llm_as_judge uses our fake client instead of OpenAI.

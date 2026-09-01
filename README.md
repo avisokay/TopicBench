@@ -222,7 +222,7 @@ After computing similarities and alignment, compare model performance:
 - **Alignment**: Binary scores per topic (1 = AI label meets/exceeds human baseline, 0 = does not)
 - **Final Score**: Mean alignment score across all topics in that field (higher = better)
 
-**Available Metrics**: `cosine`, `euclidean`, `manhattan`, `angular`, `bleu`, `jaccard`, `llm_judge`
+**Available Metrics**: `cosine`, `euclidean`, `manhattan`, `angular`, `jaccard`, `llm_judge`
 
 ## Team Members
 

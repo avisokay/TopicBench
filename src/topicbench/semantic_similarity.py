@@ -2,9 +2,16 @@
 Semantic similarity utilities for TopicBench.
 
 This module implements functions to compute lexical and semantic similarity
-between pairs of sentences, including BLEU and Jaccard overlap, embedding-based
+between pairs of sentences: Jaccard token overlap, embedding-based
 cosine/Euclidean/Manhattan/angular distances, and an optional LLM-as-a-judge
 similarity score.
+
+BLEU was removed after measuring it on the pilot topic labels. Its default
+weights score 4-grams, but topic labels are a median of two words, so the
+4-gram precision is always zero and the score collapses to the smoothing floor
+(max 1.4e-231 over 27 pairs). It also rank-correlated with Jaccard at Spearman
+1.00 on that data, so it carried no information Jaccard did not already give,
+while costing the whole NLTK dependency and its downloaded corpora.
 """
 
 from math import acos, pi
@@ -12,8 +19,6 @@ import json
 import os
 
 import pandas as pd
-from nltk.translate.bleu_score import sentence_bleu
-from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import jaccard_score
 from sklearn.metrics.pairwise import cosine_similarity
@@ -22,9 +27,44 @@ from openai import OpenAI
 from scipy.spatial import distance
 
 
+EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+
+_MODEL_CACHE = {}
+
+
+def get_model(name: str = EMBEDDING_MODEL_NAME) -> SentenceTransformer:
+    """Return a cached SentenceTransformer, loading it once per process.
+
+    The embedding functions are written to be used with ``DataFrame.apply``,
+    which calls them once per row. Constructing the model inside the function
+    would reload it from disk on every row -- roughly two seconds each, so
+    around 85 minutes over a corpus of 2,300 topics. Caching makes the load a
+    one-off.
+
+    Parameters
+    ----------
+    name : str, optional
+        SentenceTransformer model name.
+
+    Returns
+    -------
+    SentenceTransformer
+        The cached model instance.
+    """
+    if name not in _MODEL_CACHE:
+        _MODEL_CACHE[name] = SentenceTransformer(name)
+    return _MODEL_CACHE[name]
+
+
 def calculate_overlap(row, string1, string2):
     """
-    Calculate BLEU and Jaccard overlap between two sentences.
+    Calculate Jaccard token overlap between two sentences.
+
+    Overlap is computed on the binary bag of words produced by
+    ``CountVectorizer``, so it measures shared vocabulary and ignores order and
+    repetition. On short strings such as topic labels it fires only when the two
+    labels literally reuse a word; treat it as a floor and read it alongside an
+    embedding or LLM-judged score.
 
     Parameters
     ----------
@@ -36,23 +76,16 @@ def calculate_overlap(row, string1, string2):
     Returns
     -------
     pd.Series
-        Series with:
-        - "BLEU"   : BLEU score in [0, 1]
-        - "Jaccard": Jaccard overlap in [0, 1]
+        Series with "Jaccard": token overlap in [0, 1].
     """
     sent1 = row[string1]
     sent2 = row[string2]
-
-    tokens1 = word_tokenize(sent1.lower())
-    tokens2 = word_tokenize(sent2.lower())
-
-    bleu = sentence_bleu([tokens2], tokens1)
 
     vectorizer = CountVectorizer(binary=True)
     vectors = vectorizer.fit_transform([sent1, sent2]).toarray()
     jaccard = jaccard_score(vectors[0], vectors[1])
 
-    return pd.Series({"BLEU": bleu, "Jaccard": jaccard})
+    return pd.Series({"Jaccard": jaccard})
 
 
 def calculate_embedding_cosine(row, string1, string2):
@@ -74,7 +107,7 @@ def calculate_embedding_cosine(row, string1, string2):
     sent1 = row[string1]
     sent2 = row[string2]
 
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = get_model()
 
     embedding1 = model.encode([sent1])
     embedding2 = model.encode([sent2])
@@ -148,9 +181,9 @@ Respond ONLY with a JSON object of the form:
 """
 
     client = _get_openai_client()
-    response = client.responses.create(
+    response = client.chat.completions.create(
         model=model,
-        input=[
+        messages=[
             {
                 "role": "system",
                 "content": "You are an expert semantic similarity judge.",
@@ -160,8 +193,16 @@ Respond ONLY with a JSON object of the form:
         response_format={"type": "json_object"},
     )
 
-    data = json.loads(response.choices[0].message.content)
+    content = response.choices[0].message.content or ""
+    content = content.strip()
+    if content.startswith("```"):
+        # some models wrap JSON in a markdown fence despite response_format
+        content = content.strip("`")
+        content = content.split("\n", 1)[1] if "\n" in content else content
+        content = content.rsplit("```", 1)[0]
+    data = json.loads(content)
     similarity = float(data.get("similarity", 0.0))
+    similarity = min(1.0, max(0.0, similarity))
     rationale = data.get("rationale", "")
 
     return pd.Series(
@@ -199,7 +240,7 @@ def calculate_embedding_euclidean(row, string1, string2):
     if len(sent1.strip()) == 0 or len(sent2.strip()) == 0:
         raise ValueError("Empty string input detected")
 
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = get_model()
 
     embedding1 = model.encode([sent1], convert_to_tensor=True)
     embedding2 = model.encode([sent2], convert_to_tensor=True)
@@ -239,7 +280,7 @@ def calculate_embedding_manhattan(row, string1, string2):
     if len(sent1.strip()) == 0 or len(sent2.strip()) == 0:
         raise ValueError("Empty string input detected")
 
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = get_model()
 
     embedding1 = model.encode([sent1], convert_to_tensor=True)
     embedding2 = model.encode([sent2], convert_to_tensor=True)
@@ -279,7 +320,7 @@ def calculate_embedding_angular(row, string1, string2):
     if len(sent1.strip()) == 0 or len(sent2.strip()) == 0:
         raise ValueError("Empty string input detected")
 
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = get_model()
 
     embedding1 = model.encode([sent1], convert_to_tensor=True)
     embedding2 = model.encode([sent2], convert_to_tensor=True)

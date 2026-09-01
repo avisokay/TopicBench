@@ -40,7 +40,7 @@ Compute: High CPU/GPU usage if running local models via Ollama.
 File: src/topicbench/semantic_similarity.py
 
 **What it does**: 
-This module contains the core mathematical and logic functions for calculating the distance or similarity between two text strings. It supports multiple metrics including lexical overlap (BLEU, Jaccard), embedding-based distances (Cosine, Euclidean, Manhattan, Angular), and LLM-based evaluation.
+This module contains the core mathematical and logic functions for calculating the distance or similarity between two text strings. It supports multiple metrics including lexical overlap (Jaccard), embedding-based distances (Cosine, Euclidean, Manhattan, Angular), and LLM-based evaluation.
 
 **Inputs**:
 
@@ -56,7 +56,7 @@ A pd.Series containing the calculated score (e.g., {'Cosine_Similarity': 0.85}).
 
 **How it uses other components**:
 
-Uses NLTK and Scikit-Learn for lexical processing.
+Uses Scikit-Learn for lexical processing.
 
 Uses SentenceTransformers (all-MiniLM-L6-v2) to generate vector embeddings.
 

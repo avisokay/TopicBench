@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TopicBench &mdash; human topic labeling</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+ color:#1f2430;background:#f4f6f8}
+button{font:inherit;cursor:pointer}
+input,textarea{font:inherit;color:inherit}
+.hide{display:none!important}
+
+/* ---------- gate ---------- */
+#gate{max-width:560px;margin:8vh auto;background:#fff;border:1px solid #dfe3e8;
+ border-radius:10px;padding:1.8rem 2rem;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+#gate h1{margin:0 0 .2rem;font-size:1.35rem}
+#gate .sub{color:#5b6472;font-size:.9rem;margin-bottom:1.3rem}
+#gate label{display:block;font-weight:600;font-size:.82rem;margin:.9rem 0 .25rem}
+#gate input{width:100%;padding:.55rem .7rem;border:1px solid #cfd6de;border-radius:6px}
+#gate .err{color:#b3261e;font-size:.82rem;min-height:1.1rem;margin-top:.5rem}
+.primary{background:#1b4d2e;color:#fff;border:0;border-radius:6px;
+ padding:.6rem 1.1rem;font-weight:600}
+.primary:disabled{background:#9db3a6;cursor:not-allowed}
+.ghost{background:#fff;border:1px solid #cfd6de;border-radius:6px;padding:.45rem .85rem}
+.brief{background:#f7fbf8;border:1px solid #cfe0d5;border-radius:7px;
+ padding:.7rem .9rem;font-size:.85rem;color:#2b3b31;margin-top:1.2rem}
+.brief ul{margin:.4rem 0 0;padding-left:1.1rem}
+.brief li{margin:.18rem 0}
+
+/* ---------- shell ---------- */
+#app{display:grid;grid-template-columns:1fr 250px;gap:1.1rem;
+ max-width:1400px;margin:0 auto;padding:1rem 1.2rem 4rem}
+@media(max-width:1080px){#app{grid-template-columns:1fr}#rail{position:static!important}}
+
+/* ---------- top bar ---------- */
+#bar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #dfe3e8;
+ padding:.55rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+#bar .who{font-size:.82rem;color:#5b6472}
+#bar .spacer{flex:1}
+#prog{height:6px;background:#e6eaee;border-radius:4px;width:190px;overflow:hidden}
+#prog div{height:100%;background:#2f7d4f;width:0;transition:width .2s}
+#progtxt{font-size:.8rem;color:#5b6472;font-variant-numeric:tabular-nums}
+#saved{font-size:.76rem;color:#2f7d4f;min-width:92px}
+
+/* ---------- paper context ---------- */
+.paper{background:#fff;border:1px solid #dfe3e8;border-radius:10px;padding:1.1rem 1.3rem;
+ margin-bottom:.9rem}
+.paper h2{margin:0 0 .3rem;font-size:1.16rem;line-height:1.35}
+.meta{font-size:.82rem;color:#5b6472;margin-bottom:.8rem}
+.meta .fld{background:#eef3f7;border-radius:10px;padding:.05rem .45rem;margin-left:.35rem}
+.block{margin-top:.7rem}
+.block .lbl{font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+ color:#7a8593;margin-bottom:.2rem}
+.corpusbox{background:#fffdf5;border:1px solid #ecdfae;border-radius:7px;
+ padding:.5rem .7rem;font-size:.92rem}
+.abs{font-size:.9rem;color:#333b47;max-height:7.2rem;overflow:hidden;position:relative}
+.abs.open{max-height:none}
+.kwnote{margin-top:.8rem;font-size:.8rem;color:#5b6472;background:#f6f8fa;border:1px solid #e3e8ee;border-radius:6px;padding:.4rem .6rem}
+.absmore{background:none;border:0;color:#1b4d2e;font-size:.8rem;font-weight:600;
+ padding:.2rem 0}
+
+/* ---------- clusters ---------- */
+#clusters{display:flex;flex-direction:column;gap:.55rem}
+.cl{background:#fff;border:1px solid #dfe3e8;border-radius:9px;padding:.7rem .85rem;
+ display:grid;grid-template-columns:2.2rem 1fr 20rem;gap:.75rem;align-items:start}
+@media(max-width:900px){.cl{grid-template-columns:2.2rem 1fr}.cl .in{grid-column:2}}
+.cl.done{border-color:#bcd8c6;background:#fcfefd}
+.cl .num{font-weight:700;color:#7a8593;font-variant-numeric:tabular-nums;
+ font-size:.9rem;padding-top:.35rem}
+.kws{display:flex;flex-wrap:wrap;gap:.25rem}
+.kw{background:#eef2f6;border:1px solid #dde4ea;border-radius:4px;
+ padding:.1rem .4rem;font-size:.83rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.in input{width:100%;padding:.45rem .6rem;border:1px solid #cfd6de;border-radius:6px}
+.in input:focus{outline:2px solid #2f7d4f33;border-color:#2f7d4f}
+.in .row{display:flex;align-items:center;gap:.5rem;margin-top:.3rem;
+ font-size:.76rem;color:#5b6472}
+.in label{display:flex;align-items:center;gap:.25rem;cursor:pointer}
+
+/* ---------- rail ---------- */
+#rail{position:sticky;top:3.4rem;align-self:start;display:flex;flex-direction:column;gap:.7rem}
+.card{background:#fff;border:1px solid #dfe3e8;border-radius:9px;padding:.75rem .85rem}
+.card h3{margin:0 0 .45rem;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;
+ color:#7a8593}
+.vocab{display:flex;flex-wrap:wrap;gap:.25rem}
+.vocab span{background:#eef3f7;border:1px solid #dde4ea;border-radius:10px;
+ padding:.08rem .45rem;font-size:.78rem;cursor:pointer}
+.vocab span:hover{background:#e2ebf3}
+.navlist{display:flex;flex-direction:column;gap:.15rem;max-height:44vh;overflow:auto}
+.navlist button{text-align:left;background:none;border:0;border-radius:5px;
+ padding:.28rem .4rem;font-size:.8rem;color:#333b47;display:flex;gap:.4rem}
+.navlist button:hover{background:#f1f4f7}
+.navlist button.cur{background:#eaf3ee;font-weight:600}
+.navlist .tick{color:#2f7d4f;font-weight:700;min-width:1.6rem;font-size:.74rem;
+ font-variant-numeric:tabular-nums}
+.note textarea{width:100%;min-height:4.5rem;padding:.45rem .6rem;
+ border:1px solid #cfd6de;border-radius:6px;resize:vertical}
+
+/* ---------- footer nav ---------- */
+#foot{position:fixed;bottom:0;left:0;right:0;background:#fff;
+ border-top:1px solid #dfe3e8;padding:.55rem 1.2rem;display:flex;gap:.6rem;
+ align-items:center;z-index:20}
+#foot .spacer{flex:1}
+#warn{font-size:.8rem;color:#8a5a00}
+</style></head><body>
+
+<div id="gate">
+  <h1>TopicBench &mdash; human topic labeling</h1>
+  <div class="sub">2 papers, 27 keyword clusters. Your labels are
+    recorded independently; the papers' own topic labels are deliberately not shown.</div>
+
+  <label for="g_name">Your name</label>
+  <input id="g_name" autocomplete="name" placeholder="Jane Doe">
+  <label for="g_email">Your email</label>
+  <input id="g_email" type="email" autocomplete="email" placeholder="jane@university.edu">
+  <div class="err" id="g_err"></div>
+  <button class="primary" id="g_go">Start labeling</button>
+
+  <div class="brief">
+    <b>How to label</b>
+    <ul>
+      <li>Every cluster for a paper is on screen at once. Read them all before writing
+        anything &mdash; a label is a choice about how one cluster differs from its
+        neighbours.</li>
+      <li>Revise freely. Going back to change an earlier label as the set becomes clearer
+        is the intended way to work.</li>
+      <li>Short noun phrases, in the register you would use in a paper.</li>
+      <li>Tick <i>unsure</i> rather than guessing silently, and use the paper note for
+        anything the label cannot carry.</li>
+      <li>Your work saves in this browser as you type. Export the file at the end and send
+        it back.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="shell" class="hide">
+  <div id="bar">
+    <b>TopicBench labeling</b>
+    <span class="who" id="who"></span>
+    <span class="spacer"></span>
+    <span id="saved"></span>
+    <div id="prog"><div></div></div>
+    <span id="progtxt"></span>
+  </div>
+
+  <div id="app">
+    <div>
+      <div class="paper" id="paper"></div>
+      <div id="clusters"></div>
+    </div>
+    <div id="rail">
+      <div class="card">
+        <h3>Papers</h3>
+        <div class="navlist" id="nav"></div>
+      </div>
+      <div class="card">
+        <h3>Labels you have used here</h3>
+        <div class="vocab" id="vocab"></div>
+      </div>
+      <div class="card note">
+        <h3>Note on this paper</h3>
+        <textarea id="pnote" placeholder="Anything the labels cannot carry &mdash; overlapping
+clusters, a topic that looks like noise, terminology you were unsure about."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div id="foot">
+    <button class="ghost" id="prev">&larr; Previous paper</button>
+    <button class="ghost" id="next">Next paper &rarr;</button>
+    <span id="warn"></span>
+    <span class="spacer"></span>
+    <button class="ghost" id="reset">Clear my work</button>
+    <button class="primary" id="export">Export my labels</button>
+  </div>
+</div>
+
+<script>
+
+const T = {"task_id": "80546c40d56a", "created": "2026-08-31", "n_papers": 2, "n_clusters": 27, "hide_abstract": false, "papers": [{"work_id": "W2769563773", "title": "Computational Grounded Theory: A Methodological Framework", "authors": "Nelson 2017", "year": "2017", "journal": "Sociological Methods & Research", "field": "Sociology", "doi": "10.1177/0049124117729703", "abstract": "This article proposes a three-step methodological framework called computational grounded theory, which combines expert human knowledge and hermeneutic skills with the processing power and pattern recognition of computers, producing a more methodologically rigorous but interpretive approach to content analysis. The first, pattern detection step, involves inductive computational exploration of text, using techniques such as unsupervised machine learning and word scores to help researchers to see novel patterns in their data. The second, pattern refinement step, returns to an interpretive engagement with the data through qualitative deep reading or further exploration of the data. The third, pattern confirmation step, assesses the inductively identified patterns using further computational and natural language processing techniques. The result is an efficient, rigorous, and fully reproducible computational grounded theory. This framework can be applied to any qualitative text as data, including transcribed speeches, interviews, open-ended survey data, or ethnographic field notes, and can address many potential research questions.", "corpus": "literature of Chicago and New York women's movement organizations", "method": "STM", "clusters": [{"i": 0, "keywords": ["hullhous", "miss", "school", "children", "hous", "chicago", "resid", "year", "work", "offic", "summer", "public", "citi", "street", "open", "made", "neighborhood", "investig", "associ", "visit"]}, {"i": 1, "keywords": ["club", "year", "member", "miss", "boy", "social", "mrs", "hullhouse", "even", "parti", "meet", "room", "two", "given", "committee", "present", "danc", "entertain", "mani", "one"]}, {"i": 2, "keywords": ["hullhous", "play", "year", "given", "greek", "italian", "lectur", "build", "meet", "organ", "dramtic", "music", "present", "audienc", "mani", "school", "russian", "club", "one", "chicago"]}, {"i": 3, "keywords": ["sanger", "one", "will", "public", "birth", "inform", "can", "time", "year", "new", "give", "life", "control", "mrs", "law", "book", "make", "pamphlet", "woman", "case"]}, {"i": 4, "keywords": ["woman", "women", "man", "will", "suffrag", "men", "one", "life", "great", "world", "sex", "home", "suffragett", "like", "say", "vote", "can", "new", "social", "never"]}, {"i": 5, "keywords": ["one", "love", "will", "mother", "life", "day", "littl", "man", "know", "billi", "woman", "work", "came", "take", "well", "ladi", "like", "mickey", "time", "hand"]}, {"i": 6, "keywords": ["women", "liber", "work", "cwlu", "union", "chicago", "call", "offic", "peopl", "center", "chang", "will", "legal", "can", "societ", "womankind", "problem", "come", "togeth", "abort"]}, {"i": 7, "keywords": ["vietnam", "vietnames", "people", "war", "american", "south", "north", "nixon", "bomb", "govern", "will", "prison", "one", "can", "peac", "agreement", "forc", "militari", "viet", "saigon"]}, {"i": 8, "keywords": ["women", "gonorrhea", "doctor", "infect", "can", "pain", "treatment", "drug", "diseas", "patient", "caus", "pill", "bacteria", "penicillin", "vagina", "tube", "symptom", "uterus", "birth", "examin"]}, {"i": 9, "keywords": ["movement", "women", "feminist", "histori", "radic", "femin", "liber", "polit", "new", "lesbian", "even", "one", "first", "time", "idea", "origin", "now", "year", "media", "write"]}, {"i": 10, "keywords": ["radic", "liber", "women", "polit", "feminist", "attack", "movement", "group", "consciousnessrais", "left", "issue", "power", "action", "person", "peopl", "problem", "psycholog", "theori", "interest", "oppress"]}, {"i": 11, "keywords": ["women", "men", "liber", "movement", "male", "group", "organ", "struggl", "revolut", "oppress", "work", "fight", "now", "right", "chang", "equal", "polit", "must", "radic", "issue"]}]}, {"work_id": "W2768320505", "title": "Using Radical Environmentalist Texts to Uncover Network Structure and Network Features", "authors": "Almquist and Bagozzi 2019", "year": "2019", "journal": "Sociological Methods & Research", "field": "Sociology", "doi": "10.1177/0049124117729696", "abstract": "Radical social movements are broadly engaged in, and dedicated to, promoting change in their social environment. In their corresponding efforts to call attention to various causes, communicate with like-minded groups, and mobilize support for their activities, radical social movements also produce an enormous amount of text. These texts, like radical social movements themselves, are often (i) densely connected and (ii) highly variable in advocated protest activities. Given a corpus of radical social movement texts, can one uncover the underlying network structure of the radical activist groups involved in this movement? If so, can one then also identify which groups (and which subnetworks) are more prone to radical versus mainstream protest activities? Using a large corpus of British radical environmentalist texts (1992–2003), we seek to answer these questions through a novel integration of network discovery and unsupervised topic modeling. In doing so, we apply classic network descriptives (e.g., centrality measures) and more modern statistical models (e.g., exponential random graph models) to carefully parse apart these questions. Our findings provide a number of revealing insights into the networks and nature of radical environmentalists and their texts.", "corpus": "Do or Die British radical environmentalist magazine texts 1992-2003", "method": "STM", "clusters": [{"i": 0, "keywords": ["one", "made", "anoth", "everi", "side", "time", "hand", "mani", "turn", "left", "open", "togeth", "enough", "around", "given", "reach", "great", "strong", "run", "join"]}, {"i": 1, "keywords": ["role", "polit", "organis", "ideolog", "non", "activ", "idea", "movement", "radic", "mainstream", "question", "organi", "opinion", "individu", "media", "violent", "problem", "engag", "potenti", "posit"]}, {"i": 2, "keywords": ["oil", "compani", "mine", "crop", "farmer", "fish", "indigen", "papua", "corpor", "genet", "govern", "zapatista", "shell", "bougainvill", "peasant", "mexico", "engin", "industri", "western", "indonesian"]}, {"i": 3, "keywords": ["book", "isbn", "publish", "box", "http", "zine", "magazin", "guid", "press", "copi", "write", "articl", "send", "email", "read", "page", "list", "web", "review", "mail"]}, {"i": 4, "keywords": ["women", "law", "case", "footbal", "men", "legal", "game", "evid", "court", "school", "terrorist", "privat", "famili", "properti", "terror", "intellig", "record", "team", "agenc", "custom"]}, {"i": 5, "keywords": ["speci", "habitat", "restor", "wildlif", "peat", "bird", "ecosystem", "biodivers", "plant", "soil", "extinct", "woodland", "highland", "conserv", "hotspot", "moor", "natur", "garden", "biolog", "wild"]}, {"i": 6, "keywords": ["let", "away", "will", "back", "voic", "danger", "keep", "put", "take", "look", "etc", "earth", "thank", "mother", "first", "ever", "fill", "eye", "die", "sound"]}, {"i": 7, "keywords": ["forest", "protect", "log", "water", "environment", "mountain", "dam", "north", "nativ", "area", "east", "island", "region", "rainforest", "timber", "ago", "urban", "northern", "land", "river"]}, {"i": 8, "keywords": ["polic", "arrest", "cop", "crowd", "march", "banner", "vehicl", "window", "offic", "smash", "demo", "confer", "riot", "hour", "demonstr", "mask", "bank", "pragu", "car", "camera"]}, {"i": 9, "keywords": ["action", "direct", "campaign", "group", "involv", "network", "sabotag", "anti", "reclaim", "tactic", "meet", "success", "event", "sab", "act", "target", "rts", "opencast", "media", "aim"]}, {"i": 10, "keywords": ["camp", "evict", "site", "road", "quarri", "twyford", "tunnel", "sit", "council", "tree", "climb", "squat", "set", "hill", "fenc", "hous", "build", "tarmac", "built", "trash"]}, {"i": 11, "keywords": ["cultur", "must", "societi", "exist", "life", "learn", "live", "desir", "civilis", "understand", "human", "relationship", "skill", "can", "experi", "planet", "process", "sens", "domin", "alien"]}, {"i": 12, "keywords": ["pirat", "prison", "sentenc", "black", "panther", "bomb", "murder", "jail", "ship", "imprison", "kill", "shepherd", "sent", "africa", "gun", "white", "death", "frame", "fbi", "trial"]}, {"i": 13, "keywords": ["know", "dont", "realli", "want", "thing", "that", "think", "lot", "someth", "get", "someon", "sure", "there", "say", "just", "bad", "theyr", "didnt", "ask", "thought"]}, {"i": 14, "keywords": ["capit", "capitalist", "labour", "revolut", "class", "struggl", "global", "economi", "union", "counter", "worker", "social", "econom", "elit", "resist", "globalis", "autonomi", "wage", "spanish", "market"]}]}]};
+const KEY = 'topicbench_labels_' + T.task_id;
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const $ = s => document.querySelector(s);
+
+let S = {annotator:{name:'',email:''}, started:null, cur:0, labels:{}, notes:{}};
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){ const d = JSON.parse(raw); if(d && d.annotator) S = Object.assign(S, d); }
+  }catch(e){ /* corrupt or unavailable storage: start clean rather than fail */ }
+}
+let saveTimer = null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try{
+      localStorage.setItem(KEY, JSON.stringify(S));
+      const t = new Date().toLocaleTimeString();
+      $('#saved').textContent = 'saved ' + t;
+    }catch(e){ $('#saved').textContent = 'not saved (storage blocked)'; }
+  }, 350);
+}
+const cellKey = (w,i) => w + ':' + i;
+
+/* ---------- progress ---------- */
+function counts(){
+  let done = 0, total = 0;
+  T.papers.forEach(p => p.clusters.forEach(c => {
+    total++;
+    const v = S.labels[cellKey(p.work_id, c.i)];
+    if(v && v.label && v.label.trim()) done++;
+  }));
+  return {done, total};
+}
+function paperDone(p){
+  return p.clusters.filter(c => {
+    const v = S.labels[cellKey(p.work_id, c.i)];
+    return v && v.label && v.label.trim();
+  }).length;
+}
+function progress(){
+  const {done,total} = counts();
+  $('#prog').firstElementChild.style.width = (total ? done/total*100 : 0) + '%';
+  $('#progtxt').textContent = done + ' / ' + total + ' clusters';
+}
+
+/* ---------- render ---------- */
+function renderPaper(){
+  const p = T.papers[S.cur];
+  const bits = [p.authors, p.year, p.journal].filter(Boolean).map(esc).join(' &middot; ');
+  $('#paper').innerHTML =
+    `<h2>${esc(p.title)}</h2>
+     <div class="meta">${bits}${p.field ? `<span class="fld">${esc(p.field)}</span>`:''}
+       ${p.method ? `<span class="fld">${esc(p.method)}</span>`:''}</div>
+     ${p.corpus ? `<div class="block"><div class="lbl">Corpus described by the authors</div>
+       <div class="corpusbox">${esc(p.corpus)}</div></div>`:''}
+     ${p.abstract ? `<div class="block"><div class="lbl">Abstract</div>
+       <div class="abs" id="abs">${esc(p.abstract)}</div>
+       <button class="absmore" id="absmore">Show more</button></div>`:''}
+     <div class="kwnote">Keywords appear exactly as this paper's ${esc(p.method || 'topic model')}
+       produced them, including stemmed forms (<i>organis</i>, <i>compani</i>,
+       <i>indigen</i>). Read them as the authors did.</div>`;
+  const more = $('#absmore');
+  if(more) more.onclick = () => {
+    const a = $('#abs'); a.classList.toggle('open');
+    more.textContent = a.classList.contains('open') ? 'Show less' : 'Show more';
+  };
+  $('#pnote').value = S.notes[p.work_id] || '';
+  $('#pnote').oninput = e => { S.notes[p.work_id] = e.target.value; save(); };
+}
+
+function renderClusters(){
+  const p = T.papers[S.cur];
+  $('#clusters').innerHTML = p.clusters.map(c => {
+    const v = S.labels[cellKey(p.work_id, c.i)] || {};
+    const done = v.label && v.label.trim() ? ' done' : '';
+    return `<div class="cl${done}" data-i="${c.i}">
+      <div class="num">${c.i + 1}</div>
+      <div class="kws">${c.keywords.map(k => `<span class="kw">${esc(k)}</span>`).join('')}</div>
+      <div class="in">
+        <input data-i="${c.i}" value="${esc(v.label || '')}"
+               placeholder="your label for cluster ${c.i + 1}">
+        <div class="row">
+          <label><input type="checkbox" class="uns" data-i="${c.i}"
+            ${v.unsure ? 'checked':''}> unsure</label>
+          <label><input type="checkbox" class="noise" data-i="${c.i}"
+            ${v.noise ? 'checked':''}> not interpretable</label>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  $('#clusters').querySelectorAll('input[data-i]:not(.uns):not(.noise)').forEach(el => {
+    el.oninput = () => { setCell(p.work_id, +el.dataset.i, {label: el.value}); };
+    el.onkeydown = e => {
+      if(e.key !== 'Enter') return;
+      e.preventDefault();
+      const all = [...$('#clusters').querySelectorAll('input[data-i]:not(.uns):not(.noise)')];
+      const nx = all[all.indexOf(el) + 1];
+      if(nx) nx.focus();
+    };
+  });
+  $('#clusters').querySelectorAll('.uns').forEach(el => {
+    el.onchange = () => setCell(p.work_id, +el.dataset.i, {unsure: el.checked});
+  });
+  $('#clusters').querySelectorAll('.noise').forEach(el => {
+    el.onchange = () => setCell(p.work_id, +el.dataset.i, {noise: el.checked});
+  });
+}
+
+function setCell(w, i, patch){
+  if(!S.started) S.started = new Date().toISOString();
+  const k = cellKey(w, i);
+  S.labels[k] = Object.assign({work_id:w, topic_index:i, label:'', unsure:false, noise:false},
+                              S.labels[k] || {}, patch);
+  S.labels[k].ts = new Date().toISOString();
+  const row = $('#clusters').querySelector(`.cl[data-i="${i}"]`);
+  if(row) row.classList.toggle('done', !!(S.labels[k].label || '').trim());
+  progress(); renderVocab(); renderNav(); save();
+}
+
+/* Labels already used on THIS paper -- supports the inductive pass, where
+   consistency across clusters matters more than any single label. */
+function renderVocab(){
+  const p = T.papers[S.cur];
+  const seen = [];
+  p.clusters.forEach(c => {
+    const v = S.labels[cellKey(p.work_id, c.i)];
+    const t = v && (v.label || '').trim();
+    if(t && !seen.includes(t)) seen.push(t);
+  });
+  $('#vocab').innerHTML = seen.length
+    ? seen.map(t => `<span title="click to copy">${esc(t)}</span>`).join('')
+    : '<span style="background:none;border:0;color:#9aa4b0;padding:0">none yet</span>';
+  $('#vocab').querySelectorAll('span[title]').forEach(el => {
+    el.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(el.textContent); };
+  });
+}
+
+function renderNav(){
+  $('#nav').innerHTML = T.papers.map((p, ix) => {
+    const d = paperDone(p), n = p.clusters.length;
+    return `<button data-ix="${ix}" class="${ix === S.cur ? 'cur':''}">
+      <span class="tick">${d}/${n}</span>
+      <span>${esc(p.title.slice(0, 46))}${p.title.length > 46 ? '&hellip;':''}</span></button>`;
+  }).join('');
+  $('#nav').querySelectorAll('button').forEach(b => {
+    b.onclick = () => go(+b.dataset.ix);
+  });
+}
+
+function go(ix){
+  S.cur = Math.max(0, Math.min(T.papers.length - 1, ix));
+  save(); render(); window.scrollTo({top:0});
+}
+function render(){
+  renderPaper(); renderClusters(); renderNav(); renderVocab(); progress();
+  const p = T.papers[S.cur];
+  const left = p.clusters.length - paperDone(p);
+  $('#warn').textContent = left ? left + ' cluster' + (left>1?'s':'') + ' still blank on this paper' : '';
+  $('#prev').disabled = S.cur === 0;
+  $('#next').disabled = S.cur === T.papers.length - 1;
+}
+
+/* ---------- export ---------- */
+function exportLabels(){
+  const {done,total} = counts();
+  if(done < total && !confirm(`${total - done} of ${total} clusters are still blank. Export anyway?`))
+    return;
+  const rows = [];
+  T.papers.forEach(p => p.clusters.forEach(c => {
+    const v = S.labels[cellKey(p.work_id, c.i)] || {};
+    rows.push({work_id:p.work_id, topic_index:c.i,
+               human_label:(v.label || '').trim(),
+               unsure:!!v.unsure, not_interpretable:!!v.noise,
+               keywords:c.keywords, labeled_at:v.ts || null});
+  }));
+  const out = {schema:'topicbench.human_labels.v1', task_id:T.task_id,
+    annotator:S.annotator, started:S.started, submitted:new Date().toISOString(),
+    n_clusters:total, n_labeled:done,
+    paper_notes:S.notes, labels:rows};
+  const slug = (S.annotator.name || 'annotator').toLowerCase()
+    .replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+  const blob = new Blob([JSON.stringify(out, null, 1)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `topicbench_labels_${slug}_${T.task_id}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* ---------- start ---------- */
+function start(){
+  const name = $('#g_name').value.trim(), email = $('#g_email').value.trim();
+  if(name.length < 2){ $('#g_err').textContent = 'Please enter your name.'; return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+    $('#g_err').textContent = 'Please enter a valid email address.'; return; }
+  S.annotator = {name, email};
+  S.started = S.started || new Date().toISOString();
+  $('#gate').classList.add('hide'); $('#shell').classList.remove('hide');
+  $('#who').textContent = name + ' \u00b7 ' + email;
+  save(); render();
+}
+
+load();
+$('#g_go').onclick = start;
+['g_name','g_email'].forEach(id => {
+  $('#' + id).onkeydown = e => { if(e.key === 'Enter') start(); };
+});
+if(S.annotator && S.annotator.name && S.annotator.email){
+  $('#g_name').value = S.annotator.name;
+  $('#g_email').value = S.annotator.email;
+  $('#g_err').textContent = '';
+}
+$('#prev').onclick = () => go(S.cur - 1);
+$('#next').onclick = () => go(S.cur + 1);
+$('#export').onclick = exportLabels;
+$('#reset').onclick = () => {
+  if(!confirm('Delete all labels you have entered in this browser? This cannot be undone.')) return;
+  localStorage.removeItem(KEY);
+  S = {annotator:S.annotator, started:new Date().toISOString(), cur:0, labels:{}, notes:{}};
+  save(); render();
+};
+window.addEventListener('beforeunload', e => {
+  const {done} = counts();
+  if(done > 0 && !S._exported){ e.preventDefault(); e.returnValue = ''; }
+});
+
+</script>
+</body></html>

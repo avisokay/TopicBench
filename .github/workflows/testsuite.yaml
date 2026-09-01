@@ -45,7 +45,7 @@ jobs:
         run: pip install --no-deps .
 
       - name: Install Ruff
-        run: pip install ruff
+        run: pip install "ruff==0.16.*"
       
       - name: Lint with Ruff
         run : ruff check

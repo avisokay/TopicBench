@@ -1,0 +1,28 @@
+work_id,topic_index,comparison_column,field,reference_label,comparison_label,Jaccard,Cosine_Similarity
+W2768320505,0,human__avisokay@uw.edu,Sociology,Inspirational Language,strength,0.0,0.27203065
+W2768320505,1,human__avisokay@uw.edu,Sociology,Group Identity Debates,organized resistance,0.0,0.20639166
+W2768320505,2,human__avisokay@uw.edu,Sociology,Neocolonialism,industrial extraction,0.0,0.0987213
+W2768320505,3,human__avisokay@uw.edu,Sociology,Eco-Literature,publication,0.0,0.30708757
+W2768320505,4,human__avisokay@uw.edu,Sociology,News and Culture,people groups,0.0,0.22201046
+W2768320505,5,human__avisokay@uw.edu,Sociology,Species Conservation,ecology,0.0,0.64197844
+W2768320505,6,human__avisokay@uw.edu,Sociology,General Concern,protection,0.0,0.38395312
+W2768320505,7,human__avisokay@uw.edu,Sociology,Land Conservation,tranquil nature,0.0,0.13607445
+W2768320505,8,human__avisokay@uw.edu,Sociology,Violent Protest,police repression,0.0,0.45866412
+W2768320505,9,human__avisokay@uw.edu,Sociology,Direct Action/Ecotage,active resistance,0.0,0.3044248
+W2768320505,10,human__avisokay@uw.edu,Sociology,Occupation/Camps,nonviolent protest,0.0,0.27699023
+W2768320505,11,human__avisokay@uw.edu,Sociology,Sustainable Societies,social upheaval,0.0,0.28143978
+W2768320505,12,human__avisokay@uw.edu,Sociology,International Terror,black power,0.0,0.22726098
+W2768320505,13,human__avisokay@uw.edu,Sociology,Admonishments,phrases,0.0,0.34505007
+W2768320505,14,human__avisokay@uw.edu,Sociology,Anti-Capatalist Left,capitalist critique,0.0,0.20782001
+W2769563773,0,human__avisokay@uw.edu,Sociology,Public Institutions,children's home,0.0,0.1611623
+W2769563773,1,human__avisokay@uw.edu,Sociology,Hull-House Social Activities,entertainment,0.0,0.28009367
+W2769563773,2,human__avisokay@uw.edu,Sociology,Hull-House Practical Activities,arts education,0.0,0.06773296
+W2769563773,3,human__avisokay@uw.edu,Sociology,Sanger and Birth Control,disseminate information,0.0,0.010989254
+W2769563773,4,human__avisokay@uw.edu,Sociology,Women’s Resistance,suffragettes,0.0,0.43339792
+W2769563773,5,human__avisokay@uw.edu,Sociology,Women’s Lives,maternal,0.0,0.3797744
+W2769563773,6,human__avisokay@uw.edu,Sociology,Liberation School,labor union,0.0,0.16945486
+W2769563773,7,human__avisokay@uw.edu,Sociology,Antiwar,vietnam war,0.0,0.5177703
+W2769563773,8,human__avisokay@uw.edu,Sociology,Women’s Sexual Health,women's health,0.6666666666666666,0.7851109
+W2769563773,9,human__avisokay@uw.edu,Sociology,Movement History,queer liberation,0.0,0.32802704
+W2769563773,10,human__avisokay@uw.edu,Sociology,Movement Theory,radical resistance,0.0,0.14119023
+W2769563773,11,human__avisokay@uw.edu,Sociology,Forms of Resistance,resistance,0.3333333333333333,0.7956968

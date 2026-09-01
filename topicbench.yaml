@@ -14,7 +14,6 @@ dependencies:
   - sentence-transformers
   - openai
   - scikit-learn
-  - nltk
   - pytest
   - ollama
 
